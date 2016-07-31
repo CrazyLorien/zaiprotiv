@@ -1,0 +1,14 @@
+<script type="text/ng-template" id="categoryTree.html">
+     {{item.roleName}} 
+    <ul ng-if="item.children != null">
+      <li ng-repeat="item in item.children" ng-class="headClass(node)" ng-include="'categoryTree.html'">
+             <i class="tree-has-children" ng-click="selectNodeHead(node)"></i>
+             <treeitem node="node"></treeitem>
+             <div class="tree-label" ng-class="selectedClass()" ng-click="selectNodeLabel(node)" ></div>
+      </li>
+    </ul>
+</script>
+
+<ul>  
+    <li ng-repeat="item in $ctrl.treeModel" ng-include="'categoryTree.html'"></li>                       
+</ul>
