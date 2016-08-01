@@ -14,9 +14,9 @@
                     this.expandedNodes = {};
 
                     this.headClass = function(node) {
-                        if (node[this.nodeChildren].length && !this.expandedNodes[this.$id])
+                        if (node[this.nodeChildren].length && !this.expandedNodes[node.id])
                             return "tree-collapsed";
-                        else if (node[this.nodeChildren].length && this.expandedNodes[this.$id])
+                        else if (node[this.nodeChildren].length && this.expandedNodes[node.id])
                             return "tree-expanded";
                         else
                             return "tree-normal"
@@ -26,19 +26,19 @@
                         return this.expandedNodes[this.$id];
                     };
 
-                    this.selectNodeHead = function() {
-                        this.expandedNodes[this.$id] = !this.expandedNodes[this.$id];
+                    this.selectNodeHead = function(node) {
+                        this.expandedNodes[node.id] = !this.expandedNodes[node.id];
                     };
-
+                    var self = this;
                     this.selectNodeLabel = function( selectedNode ){
-                        this.selectedScope = this.$id;
-                        this.selectedNode = selectedNode;
-                        if (this.onSelection)
-                            this.onSelection({node: selectedNode});
+                        self.selectedScope = selectedNode.id;
+                        self.selectedNode = selectedNode;
+                        if (self.onSelection)
+                            self.onSelection({node: selectedNode});
                     };
 
-                    this.selectedClass = function() {
-                        return (this.$id == this.selectedScope)?"tree-selected":"";
+                    this.selectedClass = function(node) {
+                        return (node.id == self.selectedScope) ? "tree-selected" : "";
                     };
                  
                 }

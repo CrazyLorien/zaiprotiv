@@ -5,20 +5,24 @@ var subjects = {
            console.log("azaza");
        }
 
+       this.showSelected = function (node){
+          $(node).toogle();
+       }
+
        this.treedata = [
-        { "roleName" : "User", "roleId" : "role1", "children" : [
-          { "roleName" : "subUser1", "roleId" : "role11", "children" : null },
-          { "roleName" : "subUser2", "roleId" : "role12", "children" : [
-            { "roleName" : "subUser2-1", "roleId" : "role121", "children" : [
-              { "roleName" : "subUser2-1-1", "roleId" : "role1211", "children" : null },
-              { "roleName" : "subUser2-1-2", "roleId" : "role1212", "children" : null }
+        { "roleName" : "User", "id" : "role1", "children" : [
+          { "roleName" : "subUser1", "id" : "role11", "children" : [] },
+          { "roleName" : "subUser2", "id" : "role12", "children" : [
+            { "roleName" : "subUser2-1", "id" : "role121", "children" : [
+              { "roleName" : "subUser2-1-1", "id" : "role1211", "children" : [] },
+              { "roleName" : "subUser2-1-2", "id" : "role1212", "children" : [] }
             ]}
           ]}
         ]},
 
-        { "roleName" : "Admin", "roleId" : "role2", "children" : null},
+        { "roleName" : "Admin", "id" : "role2", "children" : []},
 
-        { "roleName" : "Guest", "roleId" : "role3", "children" : null }
+        { "roleName" : "Guest", "id" : "role3", "children" : [] }
       ];
    }
 }

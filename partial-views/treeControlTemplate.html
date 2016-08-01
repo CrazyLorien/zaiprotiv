@@ -1,14 +1,13 @@
 <script type="text/ng-template" id="categoryTree.html">
-     {{item.roleName}} 
-    <ul ng-if="item.children != null">
-      <li ng-repeat="item in item.children" ng-class="headClass(node)" ng-include="'categoryTree.html'">
-             <i class="tree-has-children" ng-click="selectNodeHead(node)"></i>
-             <treeitem node="node"></treeitem>
-             <div class="tree-label" ng-class="selectedClass()" ng-click="selectNodeLabel(node)" ></div>
+     <div ng-class="$ctrl.headClass(item)" ng-click="$ctrl.selectNodeHead(item)">{{item.roleName}}</div>
+    <ul ng-if="item.children.length > 0 && $ctrl.headClass(item) != 'tree-collapsed'" >
+      <li ng-repeat="item in item.children" ng-include="'categoryTree.html'"  ng-click="$ctrl.selectNodeLabel(item)" >        
       </li>
     </ul>
 </script>
 
-<ul>  
-    <li ng-repeat="item in $ctrl.treeModel" ng-include="'categoryTree.html'"></li>                       
-</ul>
+<div data-tree-model>
+    <ul>  
+        <li ng-repeat="item in $ctrl.treeModel" ng-include="'categoryTree.html'" ></li>                       
+    </ul>
+</div>

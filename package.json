@@ -8,9 +8,12 @@
   },
   "devDependencies": {
     "webpack": "*",
-    "webpack-dev-server" : "*",
-     "path": "*"
+    "webpack-dev-server": "*",
+    "path": "*"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
 }

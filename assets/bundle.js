@@ -70,20 +70,24 @@ var main =
 	           console.log("azaza");
 	       }
 
+	       this.showSelected = function (node){
+	          $(node).toogle();
+	       }
+
 	       this.treedata = [
-	        { "roleName" : "User", "roleId" : "role1", "children" : [
-	          { "roleName" : "subUser1", "roleId" : "role11", "children" : null },
-	          { "roleName" : "subUser2", "roleId" : "role12", "children" : [
-	            { "roleName" : "subUser2-1", "roleId" : "role121", "children" : [
-	              { "roleName" : "subUser2-1-1", "roleId" : "role1211", "children" : null },
-	              { "roleName" : "subUser2-1-2", "roleId" : "role1212", "children" : null }
+	        { "roleName" : "User", "id" : "role1", "children" : [
+	          { "roleName" : "subUser1", "id" : "role11", "children" : [] },
+	          { "roleName" : "subUser2", "id" : "role12", "children" : [
+	            { "roleName" : "subUser2-1", "id" : "role121", "children" : [
+	              { "roleName" : "subUser2-1-1", "id" : "role1211", "children" : [] },
+	              { "roleName" : "subUser2-1-2", "id" : "role1212", "children" : [] }
 	            ]}
 	          ]}
 	        ]},
 
-	        { "roleName" : "Admin", "roleId" : "role2", "children" : null},
+	        { "roleName" : "Admin", "id" : "role2", "children" : []},
 
-	        { "roleName" : "Guest", "roleId" : "role3", "children" : null }
+	        { "roleName" : "Guest", "id" : "role3", "children" : [] }
 	      ];
 	   }
 	}
@@ -112,9 +116,9 @@ var main =
 	                    this.expandedNodes = {};
 
 	                    this.headClass = function(node) {
-	                        if (node[this.nodeChildren].length && !this.expandedNodes[this.$id])
+	                        if (node[this.nodeChildren].length && !this.expandedNodes[node.id])
 	                            return "tree-collapsed";
-	                        else if (node[this.nodeChildren].length && this.expandedNodes[this.$id])
+	                        else if (node[this.nodeChildren].length && this.expandedNodes[node.id])
 	                            return "tree-expanded";
 	                        else
 	                            return "tree-normal"
@@ -124,19 +128,19 @@ var main =
 	                        return this.expandedNodes[this.$id];
 	                    };
 
-	                    this.selectNodeHead = function() {
-	                        this.expandedNodes[this.$id] = !this.expandedNodes[this.$id];
+	                    this.selectNodeHead = function(node) {
+	                        this.expandedNodes[node.id] = !this.expandedNodes[node.id];
 	                    };
-
+	                    var self = this;
 	                    this.selectNodeLabel = function( selectedNode ){
-	                        this.selectedScope = this.$id;
-	                        this.selectedNode = selectedNode;
-	                        if (this.onSelection)
-	                            this.onSelection({node: selectedNode});
+	                        self.selectedScope = selectedNode.id;
+	                        self.selectedNode = selectedNode;
+	                        if (self.onSelection)
+	                            self.onSelection({node: selectedNode});
 	                    };
 
-	                    this.selectedClass = function() {
-	                        return (this.$id == this.selectedScope)?"tree-selected":"";
+	                    this.selectedClass = function(node) {
+	                        return (node.id == self.selectedScope) ? "tree-selected" : "";
 	                    };
 	                 
 	                }
