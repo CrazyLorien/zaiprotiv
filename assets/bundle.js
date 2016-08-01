@@ -48,12 +48,14 @@ var main =
 	var zaiprotiv = window.zaiprotiv = angular.module('zaiprotiv', ['ngRoute']).config(['$routeProvider', function($routeProvider) {
 		        $routeProvider
 		  	    .when('/', {templateUrl: './partial-views/login.html'})
-		  	    .when('/main', {templateUrl: './partial-views/main.html'})	  	 		      
+		  	    .when('/main', {templateUrl: './partial-views/main.html'})
+				.when('/main/subject', { templateUrl: '/partial-views/node.html'}) 		      
 		  	    .otherwise({redirectTo: '/'})}])
 
 	zaiprotiv.component('subjects', __webpack_require__(1))
 	zaiprotiv.component('treecontrol', __webpack_require__(2))
 	zaiprotiv.component('treeitem', __webpack_require__(3))
+	zaiprotiv.component('subject', __webpack_require__(4))
 
 	module.exports = zaiprotiv;
 
@@ -64,15 +66,8 @@ var main =
 /***/ function(module, exports) {
 
 	var subjects = {
-	   templateUrl:"../partial-views/subject.html",
+	   templateUrl:"../partial-views/subjects.html",
 	   controller: function () {
-	       this.showSelected = function (node) {
-	           console.log("azaza");
-	       }
-
-	       this.showSelected = function (node){
-	          $(node).toogle();
-	       }
 
 	       this.treedata = [
 	        { "roleName" : "User", "id" : "role1", "children" : [
@@ -111,7 +106,7 @@ var main =
 	                    nodeChildren: "@"
 	                },
 	                templateUrl: "../../partial-views/treeControlTemplate.html",  
-	                controller: function() {
+	                controller: function($location) {
 	                    this.nodeChildren = this.nodeChildren || 'children';
 	                    this.expandedNodes = {};
 
@@ -137,6 +132,8 @@ var main =
 	                        self.selectedNode = selectedNode;
 	                        if (self.onSelection)
 	                            self.onSelection({node: selectedNode});
+	                        $location.path("/main/subject")
+	                        
 	                    };
 
 	                    this.selectedClass = function(node) {
@@ -163,6 +160,21 @@ var main =
 	        
 	        
 	 
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	var subject = {
+	   templateUrl:"../partial-views/subject.html",
+	   require: { subs:"^subjects"},
+	   controller: function () {
+	       console.log(this.subs.selectedNode)
+	     
+	   }
+	}
+
+	module.exports = subject;
 
 /***/ }
 /******/ ]);

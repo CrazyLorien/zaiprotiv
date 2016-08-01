@@ -1,13 +1,6 @@
 var subjects = {
-   templateUrl:"../partial-views/subject.html",
+   templateUrl:"../partial-views/subjects.html",
    controller: function () {
-       this.showSelected = function (node) {
-           console.log("azaza");
-       }
-
-       this.showSelected = function (node){
-          $(node).toogle();
-       }
 
        this.treedata = [
         { "roleName" : "User", "id" : "role1", "children" : [

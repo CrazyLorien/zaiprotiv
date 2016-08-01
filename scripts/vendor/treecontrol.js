@@ -9,7 +9,7 @@
                     nodeChildren: "@"
                 },
                 templateUrl: "../../partial-views/treeControlTemplate.html",  
-                controller: function() {
+                controller: function($location) {
                     this.nodeChildren = this.nodeChildren || 'children';
                     this.expandedNodes = {};
 
@@ -35,6 +35,8 @@
                         self.selectedNode = selectedNode;
                         if (self.onSelection)
                             self.onSelection({node: selectedNode});
+                        $location.path("/main/subject")
+                        
                     };
 
                     this.selectedClass = function(node) {
