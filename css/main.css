@@ -33,3 +33,22 @@
     color : indianred;
     padding:10px;
 }
+
+.add{
+    margin-top:5%;
+    text-align:center;
+}
+
+.add > input[type="text"]{
+   width:80%;
+}
+
+.add-btn{
+    width:50%;
+
+}
+
+.add-btn-container{
+    margin-top:10%;
+    text-align:center;
+}
