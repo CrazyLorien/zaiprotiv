@@ -26,16 +26,18 @@
                         return this.expandedNodes[this.$id];
                     };
 
-                    this.selectNodeHead = function(node) {
+                    this.selectNodeHead = function(node ) {                   
                         this.expandedNodes[node.id] = !this.expandedNodes[node.id];
                     };
                     var self = this;
-                    this.selectNodeLabel = function( selectedNode ){
+                    this.selectNodeLabel = function( selectedNode, $event ){
+                        $event.stopPropagation();
                         self.selectedScope = selectedNode.id;
                         self.selectedNode = selectedNode;
                         if (self.onSelection)
                             self.onSelection({node: selectedNode});
-                        $location.path("/main/subject")
+                        if(!selectedNode[self.nodeChildren].length)
+                            $location.path("/main/subject/" + selectedNode.id)
                         
                     };
 

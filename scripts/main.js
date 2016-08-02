@@ -2,7 +2,7 @@ var zaiprotiv = window.zaiprotiv = angular.module('zaiprotiv', ['ngRoute']).conf
 	        $routeProvider
 	  	    .when('/', {templateUrl: './partial-views/login.html'})
 	  	    .when('/main', {templateUrl: './partial-views/main.html'})
-			.when('/main/subject', { templateUrl: '/partial-views/node.html'}) 		      
+			.when('/main/subject/:id', { template:'<subject></subject>'}) 		      
 	  	    .otherwise({redirectTo: '/'})}])
 
 zaiprotiv.component('subjects', require('./subjects'))

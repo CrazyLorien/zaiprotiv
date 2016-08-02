@@ -49,7 +49,7 @@ var main =
 		        $routeProvider
 		  	    .when('/', {templateUrl: './partial-views/login.html'})
 		  	    .when('/main', {templateUrl: './partial-views/main.html'})
-				.when('/main/subject', { templateUrl: '/partial-views/node.html'}) 		      
+				.when('/main/subject/:id', { template:'<subject></subject>'}) 		      
 		  	    .otherwise({redirectTo: '/'})}])
 
 	zaiprotiv.component('subjects', __webpack_require__(1))
@@ -123,16 +123,18 @@ var main =
 	                        return this.expandedNodes[this.$id];
 	                    };
 
-	                    this.selectNodeHead = function(node) {
+	                    this.selectNodeHead = function(node ) {                   
 	                        this.expandedNodes[node.id] = !this.expandedNodes[node.id];
 	                    };
 	                    var self = this;
-	                    this.selectNodeLabel = function( selectedNode ){
+	                    this.selectNodeLabel = function( selectedNode, $event ){
+	                        $event.stopPropagation();
 	                        self.selectedScope = selectedNode.id;
 	                        self.selectedNode = selectedNode;
 	                        if (self.onSelection)
 	                            self.onSelection({node: selectedNode});
-	                        $location.path("/main/subject")
+	                        if(!selectedNode[self.nodeChildren].length)
+	                            $location.path("/main/subject/" + selectedNode.id)
 	                        
 	                    };
 
@@ -167,10 +169,7 @@ var main =
 
 	var subject = {
 	   templateUrl:"../partial-views/subject.html",
-	   require: { subs:"^subjects"},
-	   controller: function () {
-	       console.log(this.subs.selectedNode)
-	     
+	   controller: function () {  
 	   }
 	}
 
