@@ -1,3 +1,15 @@
-<div>
-    Subject! {{$ctrl.subs.sectedNode}}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 subject-title">
+            {{$ctrl.subj.subject }}
+        </div>
+        <div class="col-md-6 positive">
+           <div class="title">Pro</div>
+           <arguments args="$ctrl.subj.arguments.pro">
+        </div>
+        <div class="col-md-6 negative">
+            <div class="title">Cons</div>
+           <arguments args="$ctrl.subj.arguments.cons">
+        </div>
+    </div>
 </div>

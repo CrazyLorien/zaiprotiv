@@ -9,7 +9,7 @@
                     nodeChildren: "@"
                 },
                 templateUrl: "../../partial-views/treeControlTemplate.html",  
-                controller: function($location) {
+                controller: function($location, selectedService) {
                     this.nodeChildren = this.nodeChildren || 'children';
                     this.expandedNodes = {};
 
@@ -36,8 +36,10 @@
                         self.selectedNode = selectedNode;
                         if (self.onSelection)
                             self.onSelection({node: selectedNode});
-                        if(!selectedNode[self.nodeChildren].length)
+                        if(!selectedNode[self.nodeChildren].length){
+                            selectedService.setSelected(selectedNode);
                             $location.path("/main/subject/" + selectedNode.id)
+                        }
                         
                     };
 

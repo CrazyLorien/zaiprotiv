@@ -5,10 +5,13 @@ var zaiprotiv = window.zaiprotiv = angular.module('zaiprotiv', ['ngRoute']).conf
 			.when('/main/subject/:id', { template:'<subject></subject>'}) 		      
 	  	    .otherwise({redirectTo: '/'})}])
 
-zaiprotiv.component('subjects', require('./subjects'))
-zaiprotiv.component('treecontrol', require('./vendor/treecontrol'))
-zaiprotiv.component('treeitem', require('./vendor/treeitem'))
-zaiprotiv.component('subject', require('./subject'))
+zaiprotiv.component('subjects', require('./subject/subjects'))
+zaiprotiv.component('treecontrol', require('./treecontrol/treecontrol'))
+zaiprotiv.component('treeitem', require('./treecontrol/treeitem'))
+zaiprotiv.component('subject', require('./subject/subject'))
+zaiprotiv.service('selectedService', require('./services/selectedService'))
+zaiprotiv.component('arguments', require('./arguments/arguments'))
+zaiprotiv.component('argument', require('./arguments/argument'))
 
 module.exports = zaiprotiv;
 

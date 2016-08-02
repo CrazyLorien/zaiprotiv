@@ -1,0 +1,35 @@
+.subject-title{
+    text-align: center;
+    font-size:3em;
+    color : black;
+    margin-top:5%;
+}
+
+
+.positive .title{
+    text-align: center;
+    font-size: 1.5em;
+    color : grey;
+    padding:10px;
+}
+
+.positive div:first-child{
+    text-align: center;
+    font-size: 2em;
+    color : grey;
+    padding:10px;
+}
+
+.negative .title{
+    text-align: center;
+    font-size: 1.5em;
+    color : grey;
+    padding:10px;
+}
+
+.negative div:first-child{
+    text-align: center;
+    font-size: 2em;
+    color : indianred;
+    padding:10px;
+}

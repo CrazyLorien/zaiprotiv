@@ -52,17 +52,24 @@ var main =
 				.when('/main/subject/:id', { template:'<subject></subject>'}) 		      
 		  	    .otherwise({redirectTo: '/'})}])
 
-	zaiprotiv.component('subjects', __webpack_require__(1))
-	zaiprotiv.component('treecontrol', __webpack_require__(2))
-	zaiprotiv.component('treeitem', __webpack_require__(3))
-	zaiprotiv.component('subject', __webpack_require__(4))
+	zaiprotiv.component('subjects', __webpack_require__(5))
+	zaiprotiv.component('treecontrol', __webpack_require__(6))
+	zaiprotiv.component('treeitem', __webpack_require__(7))
+	zaiprotiv.component('subject', __webpack_require__(8))
+	zaiprotiv.service('selectedService', __webpack_require__(9))
+	zaiprotiv.component('arguments', __webpack_require__(10))
+	zaiprotiv.component('argument', __webpack_require__(11))
 
 	module.exports = zaiprotiv;
 
 
 
 /***/ },
-/* 1 */
+/* 1 */,
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */
 /***/ function(module, exports) {
 
 	var subjects = {
@@ -70,19 +77,19 @@ var main =
 	   controller: function () {
 
 	       this.treedata = [
-	        { "roleName" : "User", "id" : "role1", "children" : [
-	          { "roleName" : "subUser1", "id" : "role11", "children" : [] },
-	          { "roleName" : "subUser2", "id" : "role12", "children" : [
-	            { "roleName" : "subUser2-1", "id" : "role121", "children" : [
-	              { "roleName" : "subUser2-1-1", "id" : "role1211", "children" : [] },
-	              { "roleName" : "subUser2-1-2", "id" : "role1212", "children" : [] }
+	        { "Category" : "Selection",  "id" : "role1", "children" : [
+	          { "Category" : "car selection", "id" : "role11", "children" : [] },
+	          { "Category" : "cell phone selection", "id" : "role12", "children" : [
+	            { "Category" : "iPhone", "id" : "role121", "children" : [
+	              { "subject" : "iPhone3", "id" : "role1211", "children" : [] , arguments : { pro : ["Stive Jobs", "It is cool", "You'll have a community friendly dudes", "All other are stuff"], cons : ["It is too expensive", "It is about pop culture", "My girl have one"]}},
+	              { "subject" : "iPhone4", "id" : "role1212", "children" : [] }
 	            ]}
 	          ]}
 	        ]},
 
-	        { "roleName" : "Admin", "id" : "role2", "children" : []},
+	        { "subject" : "Woman", "id" : "role2", "children" : []},
 
-	        { "roleName" : "Guest", "id" : "role3", "children" : [] }
+	        { "subject" : "Woodman", "id" : "role3", "children" : [] }
 	      ];
 	   }
 	}
@@ -92,7 +99,7 @@ var main =
 
 
 /***/ },
-/* 2 */
+/* 6 */
 /***/ function(module, exports) {
 
 	
@@ -106,7 +113,7 @@ var main =
 	                    nodeChildren: "@"
 	                },
 	                templateUrl: "../../partial-views/treeControlTemplate.html",  
-	                controller: function($location) {
+	                controller: function($location, selectedService) {
 	                    this.nodeChildren = this.nodeChildren || 'children';
 	                    this.expandedNodes = {};
 
@@ -133,8 +140,10 @@ var main =
 	                        self.selectedNode = selectedNode;
 	                        if (self.onSelection)
 	                            self.onSelection({node: selectedNode});
-	                        if(!selectedNode[self.nodeChildren].length)
+	                        if(!selectedNode[self.nodeChildren].length){
+	                            selectedService.setSelected(selectedNode);
 	                            $location.path("/main/subject/" + selectedNode.id)
+	                        }
 	                        
 	                    };
 
@@ -148,14 +157,15 @@ var main =
 
 
 /***/ },
-/* 3 */
+/* 7 */
 /***/ function(module, exports) {
 
+	//for now it is jusst for ability extension our tree control
 	module.exports = {
 	                bindings: {
 	                    nodes: '=node'
 	                },
-	                template: '<div>{{$ctrl.nodes.roleName}}</div>',
+	                template: '<div>{{$ctrl.nodes.Category || $ctrl.nodes.subject}}</div>',
 	                controller : function () {}
 	            }
 
@@ -164,16 +174,61 @@ var main =
 	 
 
 /***/ },
-/* 4 */
+/* 8 */
 /***/ function(module, exports) {
 
 	var subject = {
 	   templateUrl:"../partial-views/subject.html",
-	   controller: function () {  
+	   controller: function (selectedService) { 
+	       this.subj = selectedService.getSelected();
 	   }
 	}
 
 	module.exports = subject;
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	var selectedService = function () {
+	    var selectedItem;
+
+	    this.setSelected = function (item) {
+	        selectedItem = item;
+	    }
+
+	    this.getSelected = function () {
+	        return selectedItem;
+	    }
+	}
+
+	module.exports = selectedService;
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	var arguments = {
+	    bindings : {
+	        args: "="
+	    },
+	    templateUrl: "../../partial-views/arguments.html",
+	}
+
+	module.exports = arguments;
+
+/***/ },
+/* 11 */
+/***/ function(module, exports) {
+
+	var argument = {
+	    bindings : {
+	        data: "="
+	    },
+	    templateUrl: "../../partial-views/argument.html",
+	}
+
+	module.exports = argument;
 
 /***/ }
 /******/ ]);

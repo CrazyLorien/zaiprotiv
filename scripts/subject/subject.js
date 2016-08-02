@@ -1,6 +1,7 @@
 var subject = {
    templateUrl:"../partial-views/subject.html",
-   controller: function () {  
+   controller: function (selectedService) { 
+       this.subj = selectedService.getSelected();
    }
 }
 
