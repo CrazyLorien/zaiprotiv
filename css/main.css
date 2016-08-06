@@ -111,6 +111,21 @@
     position: relative;
 }
 
+.login-information-container-item p {
+    font-size: 1.2rem;
+    padding-top: 10px;
+}
+
+.social-icons {
+    font-size: 2rem;
+}
+
+.txt {
+    font-size: 1rem;
+    position: relative;
+    top: -5px;
+}
+
 .plusarg {
     background-image: url('../images/add.png');
     height: 64px;
