@@ -1,7 +1,11 @@
 <div class="container">
     <div class="row">
+        <div ng-show='$ctrl.createFailed'>От блин, сохранить ваш коммент не получилось =( . Давай еще разик</div>
+        <div ng-show='$ctrl.createSuccess'>Радость и счастье - комент добавлен. Ваше мнение сохранено и очень важно для нас =)</div>
+    </div>
+    <div class="row">
         <div class="col-md-12 subject-title">
-            {{$ctrl.subj.subject }}
+            {{$ctrl.subj.subject }} <img ng-src="{{ $ctrl.subj.image_url }}" />
         </div>
         <div class="col-md-6 positive">
            <div class="title">Pro</div>

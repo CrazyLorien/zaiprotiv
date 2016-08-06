@@ -14,6 +14,7 @@ zaiprotiv.component('subject', require('./subject/subject'));
 zaiprotiv.service('selectedService', require('./services/selectedService'));
 zaiprotiv.component('arguments', require('./arguments/arguments'));
 zaiprotiv.component('argument', require('./arguments/argument'));
+zaiprotiv.service('dataService', require('./services/dataService'));
 
 module.exports = zaiprotiv;
 
