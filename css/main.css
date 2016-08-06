@@ -111,16 +111,16 @@
     position: relative;
 }
 
-.plusarg{
-  background-image: url('../images/add.png');   
-  height: 64px;
-  width: 64px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  padding: 0;
-  background-color: #fafafa;
-  border: none;
-  margin-top: 20px;
+.plusarg {
+    background-image: url('../images/add.png');
+    height: 64px;
+    width: 64px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 0;
+    background-color: #fafafa;
+    border: none;
+    margin-top: 20px;
 }
 
 .popover.right.notice {
@@ -133,7 +133,7 @@
     border-radius: 6px;
     box-shadow: 6px 6px 5px 0px #ccc;
     padding: 10px;
-    top: -60%; 
+    top: -60%;
     left: 100%;
     min-height: 112px;
 }
