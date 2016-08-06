@@ -1,54 +1,112 @@
-.subject-title{
+.subject-title {
     text-align: center;
-    font-size:3em;
-    color : black;
-    margin-top:5%;
+    font-size: 3em;
+    color: black;
+    margin-top: 5%;
 }
 
-
-.positive .title{
-    text-align: center;
-    font-size: 1.5em;
-    color : grey;
-    padding:10px;
-}
-
-.positive div:first-child{
-    text-align: center;
-    font-size: 2em;
-    color : grey;
-    padding:10px;
-}
-
-.negative .title{
+.positive .title {
     text-align: center;
     font-size: 1.5em;
-    color : grey;
-    padding:10px;
+    color: grey;
+    padding: 10px;
 }
 
-.negative div:first-child{
+.positive div:first-child {
     text-align: center;
     font-size: 2em;
-    color : indianred;
-    padding:10px;
+    color: grey;
+    padding: 10px;
 }
 
-.add{
-    margin-top:5%;
-    text-align:center;
+.negative .title {
+    text-align: center;
+    font-size: 1.5em;
+    color: grey;
+    padding: 10px;
 }
 
-.add > input[type="text"]{
-   width:80%;
+.negative div:first-child {
+    text-align: center;
+    font-size: 2em;
+    color: indianred;
+    padding: 10px;
 }
 
-.add-btn{
-    width:50%;
+.add {
+    margin-top: 5%;
+    text-align: center;
+}
+
+.add > input[type="text"] {
+    width: 80%;
+}
+
+.add-btn {
+    width: 50%;
 
 }
 
-.add-btn-container{
-    margin-top:10%;
-    text-align:center;
+.add-btn-container {
+    margin-top: 10%;
+    text-align: center;
 }
+
+.left-panel {
+    background: #FFFFFF;
+    height: 100%;
+}
+
+.login-right-panel {
+    background: url('/images/right-panel.png') no-repeat center;
+    height: 100%;
+}
+
+.login-container {
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-item {
+    max-width: 50%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 6px 6px 5px 0px #ccc;
+    padding: 30px;
+    position: relative;
+}
+
+.text {
+    color: #ccc;
+    padding-top: 10px;
+}
+
+.errspan {
+    float: right;
+    margin-right: 6px;
+    margin-top: -30px;
+    position: relative;
+    z-index: 2;
+    height: 26px;
+    width: 27px;
+    background: url('/images/fa-eye.svg') no-repeat 50% 50%;
+}
+
+.login-information-container {
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-information-container-item {
+    max-width: 50%;
+    color: white;
+    padding: 30px;
+    position: relative;
+}
+
