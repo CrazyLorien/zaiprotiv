@@ -19,7 +19,7 @@
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="form-group" style="position:relative">
                         <label for="password" class="control-label"></label>
                         <input required
                                type="{{$ctrl.inputType}}"
@@ -33,6 +33,14 @@
                         <i ng-click="$ctrl.showPassword()" class="fa errspan"></i>
                         <i ng-if="loginForm.password.$invalid && loginForm.password.$dirty"
                            class="fa errspan indicator"></i>
+                         <div ng-show="$ctrl.showPassword && loginForm.password.$invalid"
+                            class="popover right notice">
+                            <div class="arrow"></div>
+                            <h3 class="popover-title">Popover right</h3>
+                            <div class="popover-content">
+                                <p>A good password</p>
+                            </div>
+                        </div>
                     </div>
 
 
@@ -56,14 +64,7 @@
                 </div>
 
 
-                <div ng-show="$ctrl.showPassword && loginForm.password.$invalid"
-                     class="popover right notice">
-                    <div class="arrow"></div>
-                    <h3 class="popover-title">Popover right</h3>
-                    <div class="popover-content">
-                        <p>A good password</p>
-                    </div>
-                </div>
+               
 
             </div>
 

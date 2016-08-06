@@ -133,8 +133,8 @@
     border-radius: 6px;
     box-shadow: 6px 6px 5px 0px #ccc;
     padding: 10px;
-    top: 46%;
-    left: 70%;
+    top: -60%; 
+    left: 100%;
     min-height: 112px;
 }
 
