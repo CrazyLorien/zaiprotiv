@@ -112,7 +112,6 @@ var main =
 
 	        this.login = () => {
 
-	            debugger;
 	        };
 
 	        this.showPassword = ()=> {

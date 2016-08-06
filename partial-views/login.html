@@ -23,11 +23,16 @@
                         <label for="password" class="control-label"></label>
                         <input required
                                type="{{$ctrl.inputType}}"
-                               ng-model="$ctrl.password" class="form-control eye-icon"
+                               ng-model="$ctrl.password"
+                               name="password"
+                               ng-mouseenter="$ctrl.showPassword=true"
+                               ng-mouseleave="$ctrl.showPassword=false"
+                               class="form-control password-position eye-icon"
                                id="password"
                                placeholder="Password">
-                        <i ng-click="$ctrl.showPassword()"
-                           class="fa errspan"></i>
+                        <i ng-click="$ctrl.showPassword()" class="fa errspan"></i>
+                        <i ng-if="loginForm.password.$invalid && loginForm.password.$dirty"
+                           class="fa errspan indicator"></i>
                     </div>
 
 
@@ -41,7 +46,7 @@
                     </div>
 
 
-                    <button type="submit" ng-disabled="loginForm.$invalid && !loginForm.$dirty"
+                    <button type="submit" ng-disabled="loginForm.$invalid && loginForm.$dirty"
                             ng-click="$ctrl.login()"
                             class="btn btn-raised btn-info pull-right">
                         Sign up
@@ -50,6 +55,15 @@
 
                 </div>
 
+
+                <div ng-show="$ctrl.showPassword && loginForm.password.$invalid"
+                     class="popover right notice">
+                    <div class="arrow"></div>
+                    <h3 class="popover-title">Popover right</h3>
+                    <div class="popover-content">
+                        <p>A good password</p>
+                    </div>
+                </div>
 
             </div>
 
