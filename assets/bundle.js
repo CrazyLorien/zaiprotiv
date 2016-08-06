@@ -52,45 +52,35 @@ var main =
 				.when('/main/subject/:id', { template:'<subject></subject>'}) 		      
 		  	    .otherwise({redirectTo: '/'})}])
 
-	zaiprotiv.component('subjects', __webpack_require__(5))
-	zaiprotiv.component('treecontrol', __webpack_require__(6))
-	zaiprotiv.component('treeitem', __webpack_require__(7))
-	zaiprotiv.component('subject', __webpack_require__(8))
-	zaiprotiv.service('selectedService', __webpack_require__(9))
-	zaiprotiv.component('arguments', __webpack_require__(10))
-	zaiprotiv.component('argument', __webpack_require__(11))
+	zaiprotiv.component('subjects', __webpack_require__(1))
+	zaiprotiv.component('treecontrol', __webpack_require__(2))
+	zaiprotiv.component('treeitem', __webpack_require__(3))
+	zaiprotiv.component('subject', __webpack_require__(4))
+	zaiprotiv.service('selectedService', __webpack_require__(5))
+	zaiprotiv.component('arguments', __webpack_require__(6))
+	zaiprotiv.component('argument', __webpack_require__(7))
+	zaiprotiv.service('dataService', __webpack_require__(8))
 
 	module.exports = zaiprotiv;
 
 
 
 /***/ },
-/* 1 */,
-/* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */
-/***/ function(module, exports) {
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var config = __webpack_require__(9)
 
 	var subjects = {
 	   templateUrl:"../partial-views/subjects.html",
-	   controller: function () {
+	   controller: function (dataService) {
 
-	       this.treedata = [
-	        { "Category" : "Selection",  "id" : "role1", "children" : [
-	          { "Category" : "car selection", "id" : "role11", "children" : [] },
-	          { "Category" : "cell phone selection", "id" : "role12", "children" : [
-	            { "Category" : "iPhone", "id" : "role121", "children" : [
-	              { "subject" : "iPhone3", "id" : "role1211", "children" : [] , arguments : { pro : ["Stive Jobs", "It is cool", "You'll have a community friendly dudes", "All other are stuff"], cons : ["It is too expensive", "It is about pop culture", "My girl have one"]}},
-	              { "subject" : "iPhone4", "id" : "role1212", "children" : [] }
-	            ]}
-	          ]}
-	        ]},
+	       var data = dataService.getAll(config.url)
 
-	        { "subject" : "Woman", "id" : "role2", "children" : []},
+	       data.then( (response) => {
+	           this.treedata = response.data;
+	       })
 
-	        { "subject" : "Woodman", "id" : "role3", "children" : [] }
-	      ];
 	   }
 	}
 
@@ -99,7 +89,7 @@ var main =
 
 
 /***/ },
-/* 6 */
+/* 2 */
 /***/ function(module, exports) {
 
 	
@@ -157,7 +147,7 @@ var main =
 
 
 /***/ },
-/* 7 */
+/* 3 */
 /***/ function(module, exports) {
 
 	//for now it is jusst for ability extension our tree control
@@ -174,12 +164,14 @@ var main =
 	 
 
 /***/ },
-/* 8 */
-/***/ function(module, exports) {
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var config = __webpack_require__(9)
 
 	var subject = {
 	   templateUrl:"../partial-views/subject.html",
-	   controller: function (selectedService) { 
+	   controller: function (selectedService, dataService, $timeout) { 
 	       this.subj = selectedService.getSelected();
 
 	       this.proCons;
@@ -192,8 +184,21 @@ var main =
 	       }
 
 	       this.addArg = () => {
-	          this.proCons ? this.subj.pro.push(this.requestData) : this.subj.cons.push(this.requestData);
+	          this.proCons ? this.subj.arguments.pro.push(this.requestData) : this.subj.arguments.cons.push(this.requestData);
+	          dataService.save( config.url,  "POST", this.subj ).then( (response) => {
+	              this.createdSuccess = true;
+	              $timeout(5000, () => {
+	                  this.createdSuccess = false;
+	              })
+	          }, () => {
+	              this.createdFailed = true;
+	              $timeout(5000, () => {
+	                  this.createdFailed = false;
+	              })
+	          } )
 	       }
+
+
 
 	    
 	   }
@@ -202,7 +207,7 @@ var main =
 	module.exports = subject;
 
 /***/ },
-/* 9 */
+/* 5 */
 /***/ function(module, exports) {
 
 	var selectedService = function () {
@@ -220,7 +225,7 @@ var main =
 	module.exports = selectedService;
 
 /***/ },
-/* 10 */
+/* 6 */
 /***/ function(module, exports) {
 
 	var arguments = {
@@ -233,7 +238,7 @@ var main =
 	module.exports = arguments;
 
 /***/ },
-/* 11 */
+/* 7 */
 /***/ function(module, exports) {
 
 	var argument = {
@@ -244,6 +249,39 @@ var main =
 	}
 
 	module.exports = argument;
+
+/***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+	var dataService = function ($http) {
+
+	    this.save = function (url, type, item) {
+	        return  $http({url : url, data : item, method: type });
+	    }
+
+	    this.getAll = function (url) {
+	        return $http({ url : url, method : "GET"})
+	    }
+
+	    this.getById = function (url, id) {
+	        return $http({ url: url + '/' + id, method: "GET", params : { id : id} })
+	    }
+
+
+	}
+
+	module.exports = dataService;
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	var config = {
+	    url : "content.json"
+	}
+
+	module.exports = config;
 
 /***/ }
 /******/ ]);

@@ -1,22 +1,15 @@
+var config = require('../../config')
+
 var subjects = {
    templateUrl:"../partial-views/subjects.html",
-   controller: function () {
+   controller: function (dataService) {
 
-       this.treedata = [
-        { "Category" : "Selection",  "id" : "role1", "children" : [
-          { "Category" : "car selection", "id" : "role11", "children" : [] },
-          { "Category" : "cell phone selection", "id" : "role12", "children" : [
-            { "Category" : "iPhone", "id" : "role121", "children" : [
-              { "subject" : "iPhone3", "id" : "role1211", "children" : [] , arguments : { pro : ["Stive Jobs", "It is cool", "You'll have a community friendly dudes", "All other are stuff"], cons : ["It is too expensive", "It is about pop culture", "My girl have one"]}},
-              { "subject" : "iPhone4", "id" : "role1212", "children" : [] }
-            ]}
-          ]}
-        ]},
+       var data = dataService.getAll(config.url)
 
-        { "subject" : "Woman", "id" : "role2", "children" : []},
+       data.then( (response) => {
+           this.treedata = response.data;
+       })
 
-        { "subject" : "Woodman", "id" : "role3", "children" : [] }
-      ];
    }
 }
 
