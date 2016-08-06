@@ -1,1 +1,15 @@
-<div class="argument"><span class="plus" />{{$ctrl.data}}<span class="minus"></div>
+<div class="argument-container">
+    <div>
+        <div class="avatar">
+            <img src="{{$ctrl.data.image_url}}">
+        </div>
+        <div class="argument-info">
+            <div class="argument-title">
+                {{$ctrl.data.title}}
+            </div>
+            <div class="argument-body">
+                {{$ctrl.data.body}}
+            </div>
+        </div>
+    </div>
+</div>

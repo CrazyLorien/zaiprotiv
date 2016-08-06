@@ -8,29 +8,72 @@
 .positive .title {
     text-align: center;
     font-size: 1.5em;
-    color: grey;
+    color: white;
     padding: 10px;
 }
 
 .positive div:first-child {
-    text-align: center;
-    font-size: 2em;
-    color: grey;
-    padding: 10px;
+    text-align: left;
+    color: white;
 }
 
 .negative .title {
     text-align: center;
     font-size: 1.5em;
-    color: grey;
+    color: white;
     padding: 10px;
 }
 
-.negative div:first-child {
+.widget-container {
+    padding: 40px;
+}
+
+.widget-wrapper {
+    padding-top: 10px;
+}
+
+.widget-buttons {
+    border: 1px solid #ccc;
+    height: 50px;
+    cursor: pointer;
     text-align: center;
-    font-size: 2em;
-    color: indianred;
-    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 6px 6px 5px 0px #ccc;
+    align-items: center;
+    justify-content: center;
+}
+
+.widget-buttons-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.widget {
+    padding-bottom: 20px;
+}
+
+.negative div:first-child {
+    text-align: right;
+    color: white;
+}
+
+.argument-container {
+    background-color: white;
+    border: 1px solid #ccc;
+    height: auto;
+    padding: 20px;
+}
+
+.argument-title {
+    font-weight: bold;
+}
+
+.avatar {
+    width: 50px;
+}
+
+.argument-info {
+    padding-left: 50px;
 }
 
 .add {
@@ -168,6 +211,40 @@
     padding-right: 45px;
 }
 
+.positive {
+    background-color: #009688;
+    color: white;
+}
+
+.negative {
+    background-color: #E91E63;
+    color: white;
+}
+
+.box {
+    padding: 0 5px 0 5px;
+}
+
+.box .inner {
+    background-color: #fff;
+}
+
+.container-flex {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.item-flex {
+    flex: 1;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.item-flex:last-child {
+    margin-right: 0;
+}
+
 .argument{
     word-wrap:break-word;
 }
@@ -190,7 +267,7 @@
 .autocomplete input{
   font-size: 1.2em;
   width: 100%;
-  padding:0.4em; 
+  padding:0.4em;
 }
 
 .autocomplete ul{

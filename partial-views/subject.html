@@ -1,27 +1,61 @@
-<div class="container">
-    <div class="row">
-        <div ng-show='$ctrl.createFailed'>От блин, сохранить ваш коммент не получилось =( . Давай еще разик</div>
-        <div ng-show='$ctrl.createSuccess'>Радость и счастье - комент добавлен. Ваше мнение сохранено и очень важно для нас =)</div>
+<div class="container-fluid widget-container">
+
+
+    <div>
+        <div class="container-flex widget row">
+
+
+            <div class="item-flex positive">
+                <div class="title">Pro</div>
+            </div>
+            <div class="item-flex negative">
+                <div class="title">Cons</div>
+            </div>
+        </div>
+
+
+        <div class="container-flex row">
+            <div class="item-flex">
+                <arguments args="$ctrl.subj.arguments.pro"></arguments>
+            </div>
+            <div class="item-flex">
+                <div class="title">
+                    <arguments args="$ctrl.subj.arguments.cons"></arguments>
+                </div>
+            </div>
+        </div>
+
     </div>
-    <div class="row">
-        <div class="col-md-12 subject-title">
-            {{$ctrl.subj.subject }} <img ng-src="{{ $ctrl.subj.image_url }}" />
-        </div>
-        <div class="col-md-6 positive">
-           <div class="title">Pro</div>
-           <arguments args="$ctrl.subj.arguments.pro">
-        </div>
-        <div class="col-md-6 negative">
-            <div class="title">Cons</div>
-           <arguments args="$ctrl.subj.arguments.cons">
-        </div>
-        <div class="col-md-12 add" >
-            <button ng-click="$ctrl.positive()" class="plusarg"></button>
-            <input type="text" value="I like you lads - great resourse" ng-model="$ctrl.requestData" />
-            <button ng-click="$ctrl.negative()" class="btn minusarg">-</button>
-        </div>
-        <div class="col-md-12 add-btn-container">
-            <button class="btn add-btn" ng-click="$ctrl.addArg()">Add</button>
+
+    <div>
+        <div class="container-flex row">
+            <div class="item-flex widget-buttons">
+                <div class="widget-wrapper" ng-click="$ctrl.addArg()">
+                    <span class="widget-buttons-title">Add argument</span>
+                </div>
+
+            </div>
+            <div class="item-flex widget-buttons">
+                <div class="widget-wrapper" ng-click="$ctrl.showResult()">
+                    <span class="widget-buttons-title">Result</span>
+                </div>
+            </div>
         </div>
     </div>
+
+
+    <!--<div class="row">-->
+    <!--<div class="col-md-12 subject-title">-->
+    <!--{{$ctrl.subj.subject }} <img ng-src="{{ $ctrl.subj.image_url }}"/>-->
+    <!--</div>-->
+
+    <!--<div class="col-md-12 add">-->
+    <!--<button ng-click="$ctrl.positive()" class="plusarg"></button>-->
+    <!--<input type="text" value="I like you lads - great resourse" ng-model="$ctrl.requestData"/>-->
+    <!--<button ng-click="$ctrl.negative()" class="btn minusarg">-</button>-->
+    <!--</div>-->
+    <!--<div class="col-md-12 add-btn-container">-->
+    <!--<button class="btn add-btn" ng-click="$ctrl.addArg()">Add</button>-->
+    <!--</div>-->
+    <!--</div>-->
 </div>

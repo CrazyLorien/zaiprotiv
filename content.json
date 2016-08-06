@@ -1,17 +1,100 @@
-[  
-  {"id":1,"name":"Айфон","subject":"Стоит ли тратить тысячу на телефон",
-   "children" : [] ,"image_url":"http://www.imore.com/sites/imore.com/files/styles/w800h450crop/public/field/image/2015/10/iphone-6s-plus-home-screen-hero.jpg?itok=iGb-UlJ2",
-    "arguments" :
-     { "pro" : ["Steve Jobs", "It is cool", "You'll have a community friendly dudes", "All other are stuff"],
-       "cons" : ["It is too expensive", "It is about pop culture", "My girl have one"]
-     }  
+[
+  {
+    "Category": "Selection",
+    "id": "role1",
+    "children": [
+      {
+        "Category": "car selection",
+        "id": "role11",
+        "children": []
+      },
+      {
+        "Category": "cell phone selection",
+        "id": "role12",
+        "children": [
+          {
+            "Category": "iPhone",
+            "id": "role121",
+            "children": [
+              {
+                "subject": "iPhone3",
+                "id": "role1211",
+                "children": [],
+                "arguments": {
+                  "pro": [
+                    "Steve Jobs",
+                    "It is cool",
+                    "You'll have a community friendly dudes",
+                    "All other are stuff"
+                  ],
+                  "cons": [
+                    "It is too expensive",
+                    "It is about pop culture",
+                    "My girl have one"
+                  ]
+                }
+              },
+              {
+                "subject": "iPhone4",
+                "id": "role1212",
+                "children": []
+              },
+              {
+                "id": 1,
+                "name": "Айфон",
+                "subject": "Стоит ли тратить тысячу на телефон",
+                "children": [],
+                "image_url": "http://www.imore.com/sites/imore.com/files/styles/w800h450crop/public/field/image/2015/10/iphone-6s-plus-home-screen-hero.jpg?itok=iGb-UlJ2",
+                "arguments": {
+                  "pro": [
+                    {
+                      "title": "Bla",
+                      "body": "Blabla",
+                      "rang": "27854",
+                      "id": "1",
+                      "image_url": ""
+                    },
+                    {
+                      "title": "Bla2",
+                      "body": "Blabla dd",
+                      "rang": "27854",
+                      "id": "2",
+                      "image_url": ""
+                    }
+                  ],
+                  "cons": [
+                    {
+                      "title": "Bla",
+                      "body": "Blabla",
+                      "rang": "27854",
+                      "id": "1",
+                      "image_url": ""
+                    },
+                    {
+                      "title": "Bla2",
+                      "body": "Blabla dd",
+                      "rang": "27854",
+                      "id": "2",
+                      "image_url": ""
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
-    { "id":2, "subject" : "Woman", "id" : "role2", "children" : []},
-    { "id":3, "subject" : "Секс на первом свидании", "id" : "3", "children" : [],
-     "arguments" :
-     { "pro" : ["Тут могло бы быть Ваше мнение ", "It is cool", "Не читал но осуждаю", "Все остальные мнения "],
-       "cons" : ["Хаха", "Нет и еще раз нет", "Пишите пишите"]
-     }  
-    }
+  {
+    "subject": "Woman",
+    "id": "role2",
+    "children": []
+  },
+  {
+    "subject": "Woodman",
+    "id": "role3",
+    "children": []
+  }
 ]
 
