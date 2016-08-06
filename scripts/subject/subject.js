@@ -2,9 +2,13 @@ var config = require('../../config')
 
 var subject = {
    templateUrl:"../partial-views/subject.html",
-   controller: function (selectedService, dataService, $timeout) { 
-       this.subj = selectedService.getSelected();
-
+   controller: function (selectedService, dataService, $timeout) {
+       this.subj = [] ; 
+       dataService.getById(config.url, selectedService.getSelected().id).then( (response) => {
+          var temp = response.data.filter(function(rw){ return rw.id == selectedService.getSelected().id });
+          this.subj = temp[0];
+       })
+      
        this.proCons;
        this.positive = () => {
          this.proCons = true;

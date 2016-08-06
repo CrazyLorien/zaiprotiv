@@ -1,4 +1,3 @@
 <div>
-    <div>Список тем!</div>
-    <treecontrol class="tree-classic" tree-model="$ctrl.treedata" node-children="children" on-selection="$ctrl.showSelected(node)" selected-node="node1">
+   <autocomplete ng-model="$ctrl.searchParam" data="$ctrl.searchdata" on-type="$ctrl.updateSearch" on-select="$ctrl.getSubject"></autocomplete>
 </div>

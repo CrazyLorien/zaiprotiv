@@ -9,7 +9,7 @@ var dataService = function ($http) {
     }
 
     this.getById = function (url, id) {
-        return $http({ url: url + '/' + id, method: "GET", params : { id : id} })
+        return $http({ url: url , method: "GET" })
     }
 
 

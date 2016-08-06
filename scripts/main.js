@@ -1,4 +1,4 @@
-var zaiprotiv = window.zaiprotiv = angular.module('zaiprotiv', ['ngRoute', 'ngMessages']).config(['$routeProvider', function ($routeProvider) {
+var zaiprotiv = window.zaiprotiv = angular.module('zaiprotiv', ['ngRoute', 'ngMessages', "autocomplete"]).config(['$routeProvider', function ($routeProvider) {
     $routeProvider
         .when('/', {template: '<login></login>'})
         .when('/main', {templateUrl: './partial-views/main.html'})
@@ -15,6 +15,8 @@ zaiprotiv.service('selectedService', require('./services/selectedService'));
 zaiprotiv.component('arguments', require('./arguments/arguments'));
 zaiprotiv.component('argument', require('./arguments/argument'));
 zaiprotiv.service('dataService', require('./services/dataService'));
+
+var autocomplete = require('./autocomplete')
 
 module.exports = zaiprotiv;
 

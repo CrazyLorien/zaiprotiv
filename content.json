@@ -1,16 +1,13 @@
-[
-        { "Category" : "Selection",  "id" : "role1", "children" : [
-          { "Category" : "car selection", "id" : "role11", "children" : [] },
-          { "Category" : "cell phone selection", "id" : "role12", "children" : [
-            { "Category" : "iPhone", "id" : "role121", "children" : [
-              { "subject" : "iPhone3", "id" : "role1211", "children" : [] , "arguments" : { "pro" : ["Steve Jobs", "It is cool", "You'll have a community friendly dudes", "All other are stuff"], "cons" : ["It is too expensive", "It is about pop culture", "My girl have one"]}},
-              { "subject" : "iPhone4", "id" : "role1212", "children" : [] },
-              {"id":1,"name":"Айфон","subject":"Стоит ли тратить тысячу на телефон", "children" : [] ,"image_url":"http://www.imore.com/sites/imore.com/files/styles/w800h450crop/public/field/image/2015/10/iphone-6s-plus-home-screen-hero.jpg?itok=iGb-UlJ2",  "arguments" : { "pro" : ["Steve Jobs", "It is cool", "You'll have a community friendly dudes", "All other are stuff"], "cons" : ["It is too expensive", "It is about pop culture", "My girl have one"]}}
-            ]}
-          ]}
-        ]},
-         { "subject" : "Woman", "id" : "role2", "children" : []},
-
-        { "subject" : "Woodman", "id" : "role3", "children" : [] }
+[  
+  {"id":1,"name":"Айфон","subject":"Стоит ли тратить тысячу на телефон",
+   "children" : [] ,"image_url":"http://www.imore.com/sites/imore.com/files/styles/w800h450crop/public/field/image/2015/10/iphone-6s-plus-home-screen-hero.jpg?itok=iGb-UlJ2",
+    "arguments" :
+     { "pro" : ["Steve Jobs", "It is cool", "You'll have a community friendly dudes", "All other are stuff"],
+       "cons" : ["It is too expensive", "It is about pop culture", "My girl have one"]
+     }  
+  },
+    { "id":2, "subject" : "Woman", "id" : "role2", "children" : []},
+    { "id":3, "subject" : "Woodman", "id" : "role3", "children" : [] }
+ 
 ]
 
