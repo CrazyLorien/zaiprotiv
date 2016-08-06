@@ -110,3 +110,14 @@
     position: relative;
 }
 
+.plusarg{
+  background-image: url('../images/add.png');   
+  height: 64px;
+  width: 64px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 0;
+  background-color: #fafafa;
+  border: none;
+  margin-top: 20px;
+}

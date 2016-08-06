@@ -45,21 +45,23 @@ var main =
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var zaiprotiv = window.zaiprotiv = angular.module('zaiprotiv', ['ngRoute']).config(['$routeProvider', function($routeProvider) {
-		        $routeProvider
-		  	    .when('/', {templateUrl: './partial-views/login.html'})
-		  	    .when('/main', {templateUrl: './partial-views/main.html'})
-				.when('/main/subject/:id', { template:'<subject></subject>'}) 		      
-		  	    .otherwise({redirectTo: '/'})}])
+	var zaiprotiv = window.zaiprotiv = angular.module('zaiprotiv', ['ngRoute', 'ngMessages']).config(['$routeProvider', function ($routeProvider) {
+	    $routeProvider
+	        .when('/', {template: '<login></login>'})
+	        .when('/main', {templateUrl: './partial-views/main.html'})
+	        .when('/main/subject/:id', {template: '<subject></subject>'})
+	        .otherwise({redirectTo: '/'})
+	}]);
 
-	zaiprotiv.component('subjects', __webpack_require__(1))
-	zaiprotiv.component('treecontrol', __webpack_require__(2))
-	zaiprotiv.component('treeitem', __webpack_require__(3))
-	zaiprotiv.component('subject', __webpack_require__(4))
-	zaiprotiv.service('selectedService', __webpack_require__(5))
-	zaiprotiv.component('arguments', __webpack_require__(6))
-	zaiprotiv.component('argument', __webpack_require__(7))
-	zaiprotiv.service('dataService', __webpack_require__(8))
+	zaiprotiv.component('subjects', __webpack_require__(1));
+	zaiprotiv.component('login', __webpack_require__(3));
+	zaiprotiv.component('treecontrol', __webpack_require__(4));
+	zaiprotiv.component('treeitem', __webpack_require__(5));
+	zaiprotiv.component('subject', __webpack_require__(6));
+	zaiprotiv.service('selectedService', __webpack_require__(7));
+	zaiprotiv.component('arguments', __webpack_require__(8));
+	zaiprotiv.component('argument', __webpack_require__(9));
+	zaiprotiv.service('dataService', __webpack_require__(10));
 
 	module.exports = zaiprotiv;
 
@@ -69,7 +71,7 @@ var main =
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var config = __webpack_require__(9)
+	var config = __webpack_require__(2)
 
 	var subjects = {
 	   templateUrl:"../partial-views/subjects.html",
@@ -90,6 +92,44 @@ var main =
 
 /***/ },
 /* 2 */
+/***/ function(module, exports) {
+
+	var config = {
+	    url : "content.json"
+	}
+
+	module.exports = config;
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	var login = {
+	    templateUrl: "../partial-views/login.html",
+	    controller: function () {
+
+	        this.inputType = 'password';
+
+	        this.login = () => {
+
+	            debugger;
+	        };
+
+	        this.showPassword = ()=> {
+	            if (this.inputType == 'password')
+	                this.inputType = 'text';
+	            else
+	                this.inputType = 'password';
+	        };
+
+
+	    }
+	};
+
+	module.exports = login;
+
+/***/ },
+/* 4 */
 /***/ function(module, exports) {
 
 	
@@ -147,7 +187,7 @@ var main =
 
 
 /***/ },
-/* 3 */
+/* 5 */
 /***/ function(module, exports) {
 
 	//for now it is jusst for ability extension our tree control
@@ -164,10 +204,10 @@ var main =
 	 
 
 /***/ },
-/* 4 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var config = __webpack_require__(9)
+	var config = __webpack_require__(2)
 
 	var subject = {
 	   templateUrl:"../partial-views/subject.html",
@@ -207,7 +247,7 @@ var main =
 	module.exports = subject;
 
 /***/ },
-/* 5 */
+/* 7 */
 /***/ function(module, exports) {
 
 	var selectedService = function () {
@@ -225,7 +265,7 @@ var main =
 	module.exports = selectedService;
 
 /***/ },
-/* 6 */
+/* 8 */
 /***/ function(module, exports) {
 
 	var arguments = {
@@ -238,7 +278,7 @@ var main =
 	module.exports = arguments;
 
 /***/ },
-/* 7 */
+/* 9 */
 /***/ function(module, exports) {
 
 	var argument = {
@@ -251,7 +291,7 @@ var main =
 	module.exports = argument;
 
 /***/ },
-/* 8 */
+/* 10 */
 /***/ function(module, exports) {
 
 	var dataService = function ($http) {
@@ -272,16 +312,6 @@ var main =
 	}
 
 	module.exports = dataService;
-
-/***/ },
-/* 9 */
-/***/ function(module, exports) {
-
-	var config = {
-	    url : "content.json"
-	}
-
-	module.exports = config;
 
 /***/ }
 /******/ ]);
