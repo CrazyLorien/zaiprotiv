@@ -6,7 +6,6 @@ var login = {
 
         this.login = () => {
 
-            debugger;
         };
 
         this.showPassword = ()=> {

@@ -92,6 +92,7 @@
     z-index: 2;
     height: 26px;
     width: 27px;
+    cursor: pointer;
     background: url('/images/fa-eye.svg') no-repeat 50% 50%;
 }
 
@@ -109,4 +110,38 @@
     padding: 30px;
     position: relative;
 }
+
+.popover.right.notice {
+    display: block;
+    min-width: 200px;
+    height: auto;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 6px 6px 5px 0px #ccc;
+    padding: 10px;
+    top: 46%;
+    left: 70%;
+    min-height: 112px;
+}
+
+.errspan.indicator {
+    background: url('/images/security_level.svg') no-repeat 50% 50%;
+    margin-right: -12px;
+    margin-top: -29px;
+}
+
+.popover .popover-title {
+    background-color: white;
+    color: #d50000;
+}
+
+.password-position {
+    padding-right: 45px;
+}
+
+
+
+
 
