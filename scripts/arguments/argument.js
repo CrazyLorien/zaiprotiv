@@ -1,13 +1,14 @@
 var argument = {
-    bindings : {
-        args: "="
+    bindings: {
+        args: "=",
+        hideButtons: "="
     },
     templateUrl: "../../partial-views/argument.html",
-    controller : function () {
-       this.remove= function (item) {
-           item.isImportant = false;
-       }
+    controller: function () {
+        this.remove = function (item) {
+            item.isImportant = false;
+        }
     }
-}
+};
 
 module.exports = argument;

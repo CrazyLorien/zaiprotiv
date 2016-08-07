@@ -11,6 +11,8 @@ var results = {
             this.subj = temp[0];
         });
 
+        this.hideButtons = true;
+
         this.addPositive = ()=> {
 
         };

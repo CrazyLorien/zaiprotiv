@@ -1,11 +1,12 @@
 var arguments = {
-    bindings : {
-        args: "="
+    bindings: {
+        args: "=",
+        hideButtons: "="
     },
     templateUrl: "../partial-views/arguments.html",
     controller: function () {
-       
+
     }
-}
+};
 
 module.exports = arguments;
