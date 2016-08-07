@@ -50,6 +50,7 @@ var main =
 	        .when('/', {template: '<login></login>'})
 	        .when('/main', {templateUrl: './partial-views/main.html'})
 	        .when('/main/subject/:id', {template: '<subject></subject>'})
+	        .when('/results', { template : '<results></results>'})
 	        .otherwise({redirectTo: '/'})
 	}]);
 
@@ -62,7 +63,7 @@ var main =
 	zaiprotiv.component('arguments', __webpack_require__(8));
 	zaiprotiv.component('argument', __webpack_require__(9));
 	zaiprotiv.service('dataService', __webpack_require__(10));
-
+	zaiprotiv.service('results', __webpack_require__(12));
 	var autocomplete = __webpack_require__(11)
 
 	module.exports = zaiprotiv;
@@ -635,6 +636,25 @@ var main =
 	    }
 	  };
 	});
+
+/***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var config = __webpack_require__(2)
+
+	var results = {
+	   templateUrl:"../partial-views/results.html",
+	   controller: function (selectedService, dataService, $timeout) {
+	       this.subj = [] ; 
+	       dataService.getById(config.url, selectedService.getSelected().id).then( (response) => {
+	          var temp = response.data.filter(function(rw){ return rw.id == selectedService.getSelected().id });
+	          this.subj = temp[0];
+	       })
+	   }
+	}
+
+	module.exports = results;
 
 /***/ }
 /******/ ]);
