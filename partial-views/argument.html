@@ -2,7 +2,12 @@
     <div>
         <div class="avatar">
 
+
+            <img ng-src={{$ctrl.args.image_url}}>
+
             <img class="person-image" src="{{$ctrl.args.image_url || '/images/photo.jpg'}}">
+
+
         </div>
         <div class="argument-info">
 
@@ -13,9 +18,10 @@
             <div class="argument-body">
                 {{$ctrl.args.body}}
             </div>
-           
+
             <div class="notimportant">
                 <button class="btn btn-default btn-block btn-raised btn-need" ng-click="$ctrl.remove($ctrl.args)">
+
                     Not
                     important
                 </button>
