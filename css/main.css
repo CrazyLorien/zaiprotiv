@@ -38,7 +38,7 @@
 
 .widget-buttons {
     border: 1px solid #ccc;
-    height: 50px;
+    min-height: 50px;
     cursor: pointer;
     text-align: center;
     border-radius: 6px;
@@ -161,7 +161,7 @@
 }
 
 .login-information-container-item {
-    max-width: 50%;
+    max-width: 55%;
     color: white;
     padding: 30px;
     position: relative;
@@ -363,74 +363,18 @@
     height: auto;
 }
 
-.toggle {
-    vertical-align: middle;
+.result-buttons-plus {
+    background-color: #03a9f4;
 }
 
-.toggle,
-.toggle * {
-    user-select: none;
+.result-buttons-minus {
+    background-color: #ff6736;
 }
 
-.toggle label input[type=checkbox]:first-child {
-    opacity: 0;
-    display: block;
-    width: 0;
-    height: 0;
-}
-
-.toggle label input[type=checkbox]:first-child:checked + .toggle {
-    background-color: rgba(0, 149, 135, 0.5);
-}
-
-.toggle label input[type=checkbox]:first-child:checked + .toggle:after {
-    background-color: #009587;
-}
-
-.toggle label .toggle,
-.toggle label input[type=checkbox][disabled]:first-child + .toggle {
-    content: "";
-    display: inline-block;
-    width: 30px;
-    height: 15px;
-    background-color: rgba(80, 80, 80, 0.7);
-    border-radius: 15px;
-    margin-right: 10px;
-    transition: background 0.3s ease;
-}
-
-.toggle label .toggle:after {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-color: #F1F1F1;
-    border-radius: 20px;
-    position: relative;
-    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
-    left: -5px;
-    top: -2px;
-    transition: left 0.3s ease, background 0.3s ease, box-shadow 0.1s ease;
-}
-
-.toggle label input[type=checkbox][disabled]:first-child + .toggle:after,
-.toggle label input[type=checkbox][disabled]:checked:first-child + .toggle:after {
-    background-color: #BDBDBD;
-}
-
-.toggle label input[type=checkbox]:first-child:checked:active ~ .toggle:after,
-.toggle label input[type=checkbox]:first-child:checked ~ .toggle:active:after {
-    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4), 0 0 0 15px rgba(0, 149, 135, 0.1);
-}
-
-.toggle label input[type=checkbox]:first-child:active ~ .toggle:after,
-.toggle label input[type=checkbox]:first-child ~ .toggle:active:after,
-.toggle label input[type=checkbox][disabled]:first-child ~ .toggle:active:after {
-    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4), 0 0 0 15px rgba(0, 0, 0, 0.1);
-}
-
-.toggle label input[type=checkbox]:first-child:checked + .toggle:after {
-    left: 15px;
+.widget-buttons.result-buttons-plus i,
+.widget-buttons.result-buttons-minus i {
+    font-size: 2rem;
+    color: white;
 }
 
 

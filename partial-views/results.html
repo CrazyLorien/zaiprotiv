@@ -15,26 +15,33 @@
 
     <div class="container-flex padding-bottom-20">
         <div class="item-flex auto-height">
-            <arguments args="$ctrl.subj.arguments.pro"></arguments>
+            <arguments hide-buttons="true" args="$ctrl.subj.arguments.positives"></arguments>
         </div>
         <div class="item-flex auto-height">
             <div class="title">
-                <arguments args="$ctrl.subj.arguments.cons"></arguments>
+                <arguments hide-buttons="true" args="$ctrl.subj.arguments.negatives"></arguments>
             </div>
         </div>
     </div>
 
 
+    <div class="row">
+
+        <div class="item-flex" style="text-align: center">
+            <h2>Choise</h2>
+        </div>
+    </div>
+
     <div class="container-flex">
-        <div class="item-flex widget-buttons">
-            <div class="widget-wrapper" ng-click="$ctrl.addArg()">
-                <span class="widget-buttons-title">Add argument</span>
+        <div class="item-flex widget-buttons result-buttons-plus">
+            <div class="widget-wrapper" ng-click="$ctrl.addPositive()">
+                <i class="fa fa-plus" aria-hidden="true"></i>
             </div>
 
         </div>
-        <div class="item-flex widget-buttons">
-            <div class="widget-wrapper" ng-click="$ctrl.showResult()">
-                <span class="widget-buttons-title">Result</span>
+        <div class="item-flex widget-buttons result-buttons-minus">
+            <div class="widget-wrapper" ng-click="$ctrl.addNegative()">
+                <i class="fa fa-minus" aria-hidden="true"></i>
             </div>
         </div>
     </div>

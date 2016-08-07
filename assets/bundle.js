@@ -50,7 +50,7 @@ var main =
 	        .when('/', {template: '<login></login>'})
 	        .when('/main', {templateUrl: './partial-views/main.html'})
 	        .when('/main/subject/:id', {template: '<subject></subject>'})
-	        .when('/results', { template : '<results></results>'})
+	        .when('/results', {template: '<results></results>'})
 	        .otherwise({redirectTo: '/'})
 	}]);
 
@@ -64,7 +64,8 @@ var main =
 	zaiprotiv.component('argument', __webpack_require__(9));
 	zaiprotiv.service('dataService', __webpack_require__(10));
 	zaiprotiv.component('results', __webpack_require__(12));
-	var autocomplete = __webpack_require__(11)
+
+	var autocomplete = __webpack_require__(11);
 
 	module.exports = zaiprotiv;
 
@@ -77,14 +78,16 @@ var main =
 	var config = __webpack_require__(2)
 
 	var subjects = {
-	   templateUrl:"../partial-views/subjects.html",
-	   controller: function (selectedService,dataService,$location) {
+	    templateUrl: "../partial-views/subjects.html",
+	    controller: function (selectedService, dataService, $location) {
+
 
 	       var data =  dataService.getAll(config.urlProd)
 
-	       data.then( (response) => {
-	           this.searchdata =  response.data;
-	       })
+
+	        data.then((response) => {
+	            this.searchdata = response.data;
+	        });
 
 	       var self = this;
 	       this.updateSearch = function () {
@@ -113,6 +116,7 @@ var main =
 	  
 	 }
 	}
+
 
 	module.exports = subjects;
 
@@ -238,7 +242,7 @@ var main =
 
 	var subject = {
 	   templateUrl:"../partial-views/subject.html",
-	   controller: function (selectedService, dataService, $timeout) {
+	   controller: function (selectedService, dataService, $timeout,$location) {
 	       /*this.subj = [] ; 
 	       dataService.getById(config.url, selectedService.getSelected().id).then( (response) => {
 	          var temp = response.data.filter(function(rw){ return rw.id == selectedService.getSelected().id });
@@ -250,7 +254,7 @@ var main =
 	       
 
 	       this.addArg = () => {
-	          this.argumentStatus ? this.subj.arguments.positives.push({
+	          self.argumentStatus ? self.subj.arguments.positives.push({
 	                      "title": self.argumentTitle,
 	                      "body":  self.argumentBody,
 	                      "rang": "27854",
@@ -258,7 +262,7 @@ var main =
 	                      "image_url": "",
 	                       "isImportant" : true
 	                      })
-	                     : this.subj.arguments.negatives.push({
+	                     : self.subj.arguments.negatives.push({
 	                      "title": self.argumentTitle,
 	                      "body":  self.argumentBody,
 	                      "rang": "27854",
@@ -271,10 +275,32 @@ var main =
 	       }
 
 
+	        this.addArg = () => {
+	            this.argumentStatus ? this.subj.arguments.positives.push({
+	                "title": self.argumentTitle,
+	                "body": self.argumentBody,
+	                "rang": "27854",
+	                "id": "2",
+	                "image_url": "",
+	                "isImportant": true
+	            })
+	                : this.subj.arguments.negatives.push({
+	                    "title": self.argumentTitle,
+	                    "body": self.argumentBody,
+	                    "rang": "27854",
+	                    "id": "2",
+	                    "image_url": "",
+	                    "isImportant": true
+	                }
+	            );
 
-	    
-	   }
-	}
+	        };
+
+	        this.showResult = ()=> {
+	            $location.path("/results/");
+	        };
+	    }
+	};
 
 	module.exports = subject;
 
@@ -301,14 +327,15 @@ var main =
 /***/ function(module, exports) {
 
 	var arguments = {
-	    bindings : {
-	        args: "="
+	    bindings: {
+	        args: "=",
+	        hideButtons: "="
 	    },
 	    templateUrl: "../partial-views/arguments.html",
 	    controller: function () {
-	       
+
 	    }
-	}
+	};
 
 	module.exports = arguments;
 
@@ -317,16 +344,17 @@ var main =
 /***/ function(module, exports) {
 
 	var argument = {
-	    bindings : {
-	        args: "="
+	    bindings: {
+	        args: "=",
+	        hideButtons: "="
 	    },
 	    templateUrl: "../../partial-views/argument.html",
-	    controller : function () {
-	       this.remove= function (item) {
-	           item.isImportant = false;
-	       }
+	    controller: function () {
+	        this.remove = function (item) {
+	            item.isImportant = false;
+	        }
 	    }
-	}
+	};
 
 	module.exports = argument;
 
@@ -659,18 +687,27 @@ var main =
 /* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var config = __webpack_require__(2)
+	var config = __webpack_require__(2);
 
 	var results = {
-	   templateUrl:"../partial-views/results.html",
-	   controller: function (selectedService, dataService, $timeout) {
-	       this.subj = [] ; 
-	       dataService.getById(config.url, selectedService.getSelected().id).then( (response) => {
-	          var temp = response.data.filter(function(rw){ return rw.id == selectedService.getSelected().id });
-	          this.subj = temp[0];
-	       })
-	   }
-	}
+	    templateUrl: "../partial-views/results.html",
+	    controller: function (selectedService, dataService, $timeout) {
+	        this.subj = selectedService.getSelected();
+	      
+
+	        this.hideButtons = true;
+
+	        this.addPositive = ()=> {
+
+	        };
+
+	        this.addNegative = ()=> {
+
+	        };
+
+
+	    }
+	};
 
 	module.exports = results;
 

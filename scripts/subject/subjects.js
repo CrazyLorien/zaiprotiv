@@ -1,14 +1,16 @@
 var config = require('../../config')
 
 var subjects = {
-   templateUrl:"../partial-views/subjects.html",
-   controller: function (selectedService,dataService,$location) {
+    templateUrl: "../partial-views/subjects.html",
+    controller: function (selectedService, dataService, $location) {
+
 
        var data =  dataService.getAll(config.urlProd)
 
-       data.then( (response) => {
-           this.searchdata =  response.data;
-       })
+
+        data.then((response) => {
+            this.searchdata = response.data;
+        });
 
        var self = this;
        this.updateSearch = function () {
@@ -37,6 +39,7 @@ var subjects = {
   
  }
 }
+
 
 module.exports = subjects;
 
