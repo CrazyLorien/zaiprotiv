@@ -1,9 +1,11 @@
 <div class="argument-container">
     <div>
         <div class="avatar">
-            <img src="{{$ctrl.data.image_url}}">
+            <img class="person-image" src="{{$ctrl.data.image_url || '/images/photo.jpg'}}">
         </div>
         <div class="argument-info">
+
+
             <div class="argument-title">
                 {{$ctrl.data.title}}
             </div>
@@ -12,8 +14,13 @@
             </div>
 
             <div class="notimportant">
-                <button class="btn btn-ntimp" ng-click="$ctrl.removeArg($ctrl.data.id)">Not important</button>
+                <button class="btn btn-default btn-block btn-raised btn-need" ng-click="$ctrl.callBack($ctrl.data.id)">
+                    Not
+                    important
+                </button>
             </div>
+
         </div>
+
     </div>
 </div>

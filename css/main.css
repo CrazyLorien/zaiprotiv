@@ -6,10 +6,12 @@
 }
 
 .positive .title {
-    text-align: center;
+    text-align: left;
     font-size: 1.5em;
     color: white;
-    padding: 10px;
+    padding-top: -34px;
+    margin-top: -30px;
+    margin-left: 50px;
 }
 
 .positive div:first-child {
@@ -18,10 +20,12 @@
 }
 
 .negative .title {
-    text-align: center;
+    text-align: left;
     font-size: 1.5em;
     color: white;
-    padding: 10px;
+    padding-top: -34px;
+    margin-top: -30px;
+    margin-left: 50px;
 }
 
 .widget-container {
@@ -69,11 +73,14 @@
 }
 
 .avatar {
-    width: 50px;
+
+    float: left;
 }
 
 .argument-info {
-    padding-left: 50px;
+    padding-left: 20%;
+    position: relative;
+    top: 20px;
 }
 
 .add {
@@ -302,17 +309,39 @@
     color: #fff;;
 }
 
+.fa.like-icon {
+    font-size: 2rem;
+    padding-left: 10px;
+    padding-top: 7px;
+}
+
 .notimportant {
-   display:none;
+    visibility: hidden;
+    padding-left: 55%;
+    position: relative;
+    top: -40px;
 }
 
+.person-image {
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    background-position: center;
 
-.argument-info:hover .notimportant{
-    display:block;
-    z-index:10000;
 }
 
-.ntimp{
+.btn-block.btn-raised.btn-need {
+    width: 180px;
+}
+
+.argument-info:hover .notimportant {
+    visibility: visible;
+    z-index: 10000;
+}
+
+.ntimp {
     background-color: grey;
 }
 
