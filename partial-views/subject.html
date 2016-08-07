@@ -1,51 +1,41 @@
 <div class="container-fluid widget-container">
 
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="container-flex widget">
-                <div class="item-flex positive">
-                    <div class="title">Pro</div>
-                </div>
-                <div class="item-flex negative">
-                    <div class="title">Cons</div>
-                </div>
+    <div class="container-flex widget">
+        <div class="item-flex positive">
+            <div class="title">Pro</div>
+        </div>
+        <div class="item-flex negative">
+            <div class="title">Cons</div>
+        </div>
+    </div>
+
+
+    <div class="container-flex padding-bottom-20">
+        <div class="item-flex auto-height">
+            <arguments args="$ctrl.subj.arguments.pro"></arguments>
+        </div>
+        <div class="item-flex auto-height">
+            <div class="title">
+                <arguments args="$ctrl.subj.arguments.cons"></arguments>
             </div>
         </div>
     </div>
 
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="container-flex">
-                <div class="item-flex">
-                    <arguments args="$ctrl.subj.arguments.pro"></arguments>
-                </div>
-                <div class="item-flex">
-                    <div class="title">
-                        <arguments args="$ctrl.subj.arguments.cons"></arguments>
-                    </div>
-                </div>
+    <div class="container-flex">
+        <div class="item-flex widget-buttons">
+            <div class="widget-wrapper" ng-click="$ctrl.addArg()">
+                <span class="widget-buttons-title">Add argument</span>
             </div>
 
         </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="container-flex">
-                <div class="item-flex widget-buttons">
-                    <div class="widget-wrapper" ng-click="$ctrl.addArg()">
-                        <span class="widget-buttons-title">Add argument</span>
-                    </div>
-
-                </div>
-                <div class="item-flex widget-buttons">
-                    <div class="widget-wrapper" ng-click="$ctrl.showResult()">
-                        <span class="widget-buttons-title">Result</span>
-                    </div>
-                </div>
+        <div class="item-flex widget-buttons">
+            <div class="widget-wrapper" ng-click="$ctrl.showResult()">
+                <span class="widget-buttons-title">Result</span>
             </div>
         </div>
     </div>
+
+
 </div>
