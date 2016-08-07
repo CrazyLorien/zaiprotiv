@@ -225,31 +225,28 @@ var main =
 	          var temp = response.data.filter(function(rw){ return rw.id == selectedService.getSelected().id });
 	          this.subj = temp[0];
 	       })
-	      
-	       this.proCons;
-	       this.positive = () => {
-	         this.proCons = true;
-	       }
-
-	       this.negative = () => {
-	           this.proCons = false;
-	       }
-
+	       var self = this;
 	       
 
 	       this.addArg = () => {
-	          this.proCons ? this.subj.arguments.pro.push(this.requestData) : this.subj.arguments.cons.push(this.requestData);
-	          dataService.save( config.url,  "POST", this.subj ).then( (response) => {
-	              this.createdSuccess = true;
-	              $timeout(5000, () => {
-	                  this.createdSuccess = false;
-	              })
-	          }, () => {
-	              this.createdFailed = true;
-	              $timeout(5000, () => {
-	                  this.createdFailed = false;
-	              })
-	          } )
+	          this.argumentStatus ? this.subj.arguments.pro.push({
+	                      "title": self.argumentTitle,
+	                      "body":  self.argumentBody,
+	                      "rang": "27854",
+	                      "id": "2",
+	                      "image_url": "",
+	                       "isImportant" : true
+	                      })
+	                     : this.subj.arguments.cons.push({
+	                      "title": self.argumentTitle,
+	                      "body":  self.argumentBody,
+	                      "rang": "27854",
+	                      "id": "2",
+	                      "image_url": "",
+	                       "isImportant" : true
+	                    }
+	);
+	        
 	       }
 
 
