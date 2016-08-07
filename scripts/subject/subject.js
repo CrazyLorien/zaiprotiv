@@ -18,6 +18,8 @@ var subject = {
            this.proCons = false;
        }
 
+       
+
        this.addArg = () => {
           this.proCons ? this.subj.arguments.pro.push(this.requestData) : this.subj.arguments.cons.push(this.requestData);
           dataService.save( config.url,  "POST", this.subj ).then( (response) => {

@@ -234,6 +234,8 @@ var main =
 	           this.proCons = false;
 	       }
 
+	       
+
 	       this.addArg = () => {
 	          this.proCons ? this.subj.arguments.pro.push(this.requestData) : this.subj.arguments.cons.push(this.requestData);
 	          dataService.save( config.url,  "POST", this.subj ).then( (response) => {
@@ -283,7 +285,13 @@ var main =
 	    bindings : {
 	        args: "="
 	    },
-	    templateUrl: "../../partial-views/arguments.html",
+	    templateUrl: "../partial-views/arguments.html",
+	    controller: function () {
+	        debugger;
+	        this.removeArg = (id) => {
+	           this.args = this.args.filter ( (item) => { return item.id != id})
+	       }
+	    }
 	}
 
 	module.exports = arguments;
@@ -294,7 +302,8 @@ var main =
 
 	var argument = {
 	    bindings : {
-	        data: "="
+	        data: "=",
+	        removeArg: "&"
 	    },
 	    templateUrl: "../../partial-views/argument.html",
 	}

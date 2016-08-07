@@ -299,8 +299,23 @@
 
 .autocomplete li.active .highlight {
     background: #666;
-    color: #fff;
+    color: #fff;;
 }
+
+.notimportant {
+   display:none;
+}
+
+
+.argument-info:hover .notimportant{
+    display:block;
+    z-index:10000;
+}
+
+.ntimp{
+    background-color: grey;
+}
+
 
 
 

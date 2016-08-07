@@ -1,6 +1,7 @@
 var argument = {
     bindings : {
-        data: "="
+        data: "=",
+        removeArg: "&"
     },
     templateUrl: "../../partial-views/argument.html",
 }
