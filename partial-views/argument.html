@@ -1,18 +1,18 @@
 <div class="argument-container">
     <div>
         <div class="avatar">
-            <img src="{{$ctrl.data.image_url}}">
+            <img ng-src={{$ctrl.args.image_url}}>
         </div>
         <div class="argument-info">
             <div class="argument-title">
-                {{$ctrl.data.title}}
+                {{$ctrl.args.title}}
             </div>
             <div class="argument-body">
-                {{$ctrl.data.body}}
+                {{$ctrl.args.body}}
             </div>
-
+           {{$ctrl}}
             <div class="notimportant">
-                <button class="btn btn-ntimp" ng-click="$ctrl.removeArg($ctrl.data.id)">Not important</button>
+                <button class="btn btn-ntimp" ng-click="$ctrl.remove($ctrl.args)">Not important</button>
             </div>
         </div>
     </div>

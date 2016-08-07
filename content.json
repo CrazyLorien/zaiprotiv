@@ -12,14 +12,16 @@
                       "body": "Blabla",
                       "rang": "27854",
                       "id": "1",
-                      "image_url": ""
+                      "image_url": "",
+                      "isImportant" : true
                     },
                     {
                       "title": "Bla2",
                       "body": "Blabla dd",
                       "rang": "27854",
                       "id": "2",
-                      "image_url": ""
+                      "image_url": "",
+                       "isImportant" : true
                     }
                   ],
                   "cons": [
@@ -28,14 +30,16 @@
                       "body": "Blabla",
                       "rang": "27854",
                       "id": "1",
-                      "image_url": ""
+                      "image_url": "",
+                       "isImportant" : true
                     },
                     {
                       "title": "Bla2",
                       "body": "Blabla dd",
                       "rang": "27854",
                       "id": "2",
-                      "image_url": ""
+                      "image_url": "",
+                       "isImportant" : true
                     }
                   ]
                 }

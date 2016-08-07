@@ -287,10 +287,7 @@ var main =
 	    },
 	    templateUrl: "../partial-views/arguments.html",
 	    controller: function () {
-	        debugger;
-	        this.removeArg = (id) => {
-	           this.args = this.args.filter ( (item) => { return item.id != id})
-	       }
+	       
 	    }
 	}
 
@@ -302,10 +299,14 @@ var main =
 
 	var argument = {
 	    bindings : {
-	        data: "=",
-	        removeArg: "&"
+	        args: "="
 	    },
 	    templateUrl: "../../partial-views/argument.html",
+	    controller : function () {
+	       this.remove= function (item) {
+	           item.isImportant = false;
+	       }
+	    }
 	}
 
 	module.exports = argument;

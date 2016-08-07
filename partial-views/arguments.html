@@ -1,5 +1,4 @@
-<div class="md-6"  ng-repeat="arg in $ctrl.args">
-
-    <argument data="arg"></argument>
+<div class="md-6"  >
+    <argument ng-repeat="arg in $ctrl.args | filter: { isImportant : 'true' }" args="arg" ></argument>
 <div>
 

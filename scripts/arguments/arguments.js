@@ -4,10 +4,7 @@ var arguments = {
     },
     templateUrl: "../partial-views/arguments.html",
     controller: function () {
-        debugger;
-        this.removeArg = (id) => {
-           this.args = this.args.filter ( (item) => { return item.id != id})
-       }
+       
     }
 }
 
