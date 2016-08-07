@@ -1,4 +1,4 @@
-<div class="container-fluid widget-container">
+<div class="container-fluid widget-container" ng-form="addArgumantForm" novalidate>
 
 
     <div class="container-flex widget">
@@ -25,18 +25,77 @@
     </div>
 
 
-    <div class="container-flex">
-        <div class="item-flex widget-buttons">
-            <div class="widget-wrapper" ng-click="$ctrl.addArg()">
+    <div class="container-flex padding-bottom-20">
+        <div class="item-flex auto-height widget-buttons">
+            <div class="widget-wrapper" ng-click="$ctrl.showForm=true">
                 <span class="widget-buttons-title">Add argument</span>
             </div>
 
         </div>
-        <div class="item-flex widget-buttons">
+        <div class="item-flex auto-height widget-buttons">
             <div class="widget-wrapper" ng-click="$ctrl.showResult()">
                 <span class="widget-buttons-title">Result</span>
             </div>
         </div>
+    </div>
+
+
+    <div class="container-flex" ng-show="$ctrl.showForm">
+
+        <div class="item-flex auto-height">
+
+            <div class="form-horizontal">
+                <fieldset>
+                    <legend>Add argument</legend>
+                    <div class="form-group is-empty">
+                        <label for="argumentTitle" class="col-md-2 control-label">Title</label>
+
+                        <div class="col-md-10">
+                            <input type="text"
+                                   ng-model="$ctrl.argumentTitle"
+                                   class="form-control" id="argumentTitle"
+                                   placeholder="Title">
+                        </div>
+                    </div>
+
+                    <div class="form-group is-empty">
+                        <label for="textArea" class="col-md-2 control-label">Body</label>
+
+                        <div class="col-md-10">
+                            <textarea
+                                    ng-model="$ctrl.argumentBody"
+                                    class="form-control" rows="3" id="textArea">
+                            </textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="toggle">
+                                <label>
+                                    <input ng-model="$ctrl.argumentStatus" type="checkbox">
+                                    <div class="toggle"></div>
+                                    {{$ctrl.argumentStatus==true? 'Positive' : 'Negative' }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-10 col-md-offset-2">
+                            <button ng-click="$ctrl.addArg()"
+                                    class="btn btn-raised btn-primary">Upload
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+        </div>
+
+
     </div>
 
 
