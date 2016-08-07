@@ -66,10 +66,16 @@
     border: 1px solid #ccc;
     height: auto;
     padding: 20px;
+    min-height: 115px;
 }
 
 .argument-title {
     font-weight: bold;
+    min-height: 24px;
+}
+
+.argument-body {
+    min-height: 24px;
 }
 
 .avatar {
@@ -339,6 +345,10 @@
 .argument-info:hover .notimportant {
     visibility: visible;
     z-index: 10000;
+}
+
+.argument-container:hover {
+    border-left: 1px solid #1883D7;
 }
 
 .ntimp {
