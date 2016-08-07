@@ -63,7 +63,7 @@ var main =
 	zaiprotiv.component('arguments', __webpack_require__(8));
 	zaiprotiv.component('argument', __webpack_require__(9));
 	zaiprotiv.service('dataService', __webpack_require__(10));
-	zaiprotiv.service('results', __webpack_require__(12));
+	zaiprotiv.component('results', __webpack_require__(12));
 	var autocomplete = __webpack_require__(11)
 
 	module.exports = zaiprotiv;
@@ -80,20 +80,38 @@ var main =
 	   templateUrl:"../partial-views/subjects.html",
 	   controller: function (selectedService,dataService,$location) {
 
-	       var data =  dataService.getAll(config.url)
+	       var data =  dataService.getAll(config.urlProd)
 
 	       data.then( (response) => {
 	           this.searchdata =  response.data;
 	       })
 
-	       this.searchParam = "";
-
-	       this.getSubject = (item) => {
-	          selectedService.setSelected(item);
-	          $location.path("/main/subject/" + item.id)
+	       var self = this;
+	       this.updateSearch = function () {
+	          dataService.getAll(config.urlProd + 'search/'  + self.searchParam).then ( (response) => {
+	             self.searchdata =  response.data;
+	          })
 	       }
 
-	   }
+	       this.searchParam = "";
+	     
+	       this.getSubject = (item) => {
+	           item.arguments = [];
+	           dataService.getAll(config.urlProd + 'subjects/'  + item.id + '/arguments').then ( (response) => {
+	             item.arguments.positives = response.data.positives.map((it) => {  
+	                 it["isImportant"]  = 'true' ;
+	                 return it;
+	                 });
+	            item.arguments.negatives = response.data.negatives.map((it) => {  
+	                 it["isImportant"]  = 'true' ;
+	                 return it;
+	                 });
+	             selectedService.setSelected(item);
+	             $location.path("/main/subject/" + item.id)
+	          })      
+	       }
+	  
+	 }
 	}
 
 	module.exports = subjects;
@@ -105,7 +123,8 @@ var main =
 /***/ function(module, exports) {
 
 	var config = {
-	    url : "content.json"
+	    url : "content.json", 
+	    urlProd : "http://api.zaiprotiv.by/v1/"
 	}
 
 	module.exports = config;
@@ -203,7 +222,7 @@ var main =
 	                bindings: {
 	                    nodes: '=node'
 	                },
-	                template: '<div>{{$ctrl.nodes.Category || $ctrl.nodes.subject}}</div>',
+	                template: '<div>{{$ctrl.nodes.Category || $ctrl.nodes.description}}</div>',
 	                controller : function () {}
 	            }
 
@@ -220,16 +239,18 @@ var main =
 	var subject = {
 	   templateUrl:"../partial-views/subject.html",
 	   controller: function (selectedService, dataService, $timeout) {
-	       this.subj = [] ; 
+	       /*this.subj = [] ; 
 	       dataService.getById(config.url, selectedService.getSelected().id).then( (response) => {
 	          var temp = response.data.filter(function(rw){ return rw.id == selectedService.getSelected().id });
 	          this.subj = temp[0];
-	       })
-	       var self = this;
+	       }) */
+	       var self = this; 
+
+	       this.subj = selectedService.getSelected();
 	       
 
 	       this.addArg = () => {
-	          this.argumentStatus ? this.subj.arguments.pro.push({
+	          this.argumentStatus ? this.subj.arguments.positives.push({
 	                      "title": self.argumentTitle,
 	                      "body":  self.argumentBody,
 	                      "rang": "27854",
@@ -237,7 +258,7 @@ var main =
 	                      "image_url": "",
 	                       "isImportant" : true
 	                      })
-	                     : this.subj.arguments.cons.push({
+	                     : this.subj.arguments.negatives.push({
 	                      "title": self.argumentTitle,
 	                      "body":  self.argumentBody,
 	                      "rang": "27854",
@@ -591,10 +612,10 @@ var main =
 	              suggestion\
 	              ng-repeat="suggestion in suggestions | filter:searchFilter | orderBy:\'toString()\' track by $index"\
 	              index="{{ $index }}"\
-	              val="{{ suggestion.subject }}"\
+	              val="{{ suggestion.description }}"\
 	              ng-class="{ active: ($index === selectedIndex) }"\
 	              ng-click="select(suggestion)"\
-	              ng-bind-html="suggestion.subject | highlight:searchParam"></li>\
+	              ng-bind-html="suggestion.description | highlight:searchParam"></li>\
 	          </ul>\
 	        </div>'
 	  };
@@ -602,7 +623,7 @@ var main =
 
 	app.filter('highlight', ['$sce', function ($sce) {
 	  return function (input, searchParam) {
-	    if (typeof input === 'function') return '';
+	    if (typeof input === 'function' || typeof searchParam === 'object') return '';
 	    if (searchParam) {
 	      var words = '(' +
 	            searchParam.split(/\ /).join(' |') + '|' +

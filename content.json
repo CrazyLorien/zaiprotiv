@@ -2,7 +2,7 @@
               {
                 "id": 1,
                 "name": "Айфон",
-                "subject": "Стоит ли тратить тысячу на телефон",
+                "description": "Стоит ли тратить тысячу на телефон",
                 "children": [],
                 "image_url": "http://www.imore.com/sites/imore.com/files/styles/w800h450crop/public/field/image/2015/10/iphone-6s-plus-home-screen-hero.jpg?itok=iGb-UlJ2",
                 "arguments": {

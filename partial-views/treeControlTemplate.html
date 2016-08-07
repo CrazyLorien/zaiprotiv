@@ -1,5 +1,5 @@
 <script type="text/ng-template" id="categoryTree.html">
-    <div ng-class="$ctrl.headClass(item)" ng-click="$ctrl.selectNodeHead(item)">{{item.Category || item.subject}}</div>
+    <div ng-class="$ctrl.headClass(item)" ng-click="$ctrl.selectNodeHead(item)">{{item.Category || item.description}}</div>
     <ul ng-if="item.children.length > 0 && $ctrl.headClass(item) != 'tree-collapsed'" >
       <li ng-repeat="item in item.children" ng-include="'categoryTree.html'"  ng-click="$ctrl.selectNodeLabel(item, $event)" >        
       </li>

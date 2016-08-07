@@ -3,7 +3,7 @@ module.exports = {
                 bindings: {
                     nodes: '=node'
                 },
-                template: '<div>{{$ctrl.nodes.Category || $ctrl.nodes.subject}}</div>',
+                template: '<div>{{$ctrl.nodes.Category || $ctrl.nodes.description}}</div>',
                 controller : function () {}
             }
 

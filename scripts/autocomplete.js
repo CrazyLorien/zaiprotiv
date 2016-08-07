@@ -253,10 +253,10 @@ app.directive('autocomplete', function() {
               suggestion\
               ng-repeat="suggestion in suggestions | filter:searchFilter | orderBy:\'toString()\' track by $index"\
               index="{{ $index }}"\
-              val="{{ suggestion.subject }}"\
+              val="{{ suggestion.description }}"\
               ng-class="{ active: ($index === selectedIndex) }"\
               ng-click="select(suggestion)"\
-              ng-bind-html="suggestion.subject | highlight:searchParam"></li>\
+              ng-bind-html="suggestion.description | highlight:searchParam"></li>\
           </ul>\
         </div>'
   };
@@ -264,7 +264,7 @@ app.directive('autocomplete', function() {
 
 app.filter('highlight', ['$sce', function ($sce) {
   return function (input, searchParam) {
-    if (typeof input === 'function') return '';
+    if (typeof input === 'function' || typeof searchParam === 'object') return '';
     if (searchParam) {
       var words = '(' +
             searchParam.split(/\ /).join(' |') + '|' +

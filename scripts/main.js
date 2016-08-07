@@ -16,7 +16,7 @@ zaiprotiv.service('selectedService', require('./services/selectedService'));
 zaiprotiv.component('arguments', require('./arguments/arguments'));
 zaiprotiv.component('argument', require('./arguments/argument'));
 zaiprotiv.service('dataService', require('./services/dataService'));
-zaiprotiv.service('results', require('./results'));
+zaiprotiv.component('results', require('./results'));
 var autocomplete = require('./autocomplete')
 
 module.exports = zaiprotiv;
