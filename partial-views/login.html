@@ -24,6 +24,7 @@
                         <input required
                                type="{{$ctrl.inputType}}"
                                ng-model="$ctrl.password"
+                               ng-pattern="^/.*(?=.{6,20})(?=.*\d)(?=.*[a-zA-Z]).*$/"
                                name="password"
                                ng-mouseenter="$ctrl.showPassword=true"
                                ng-mouseleave="$ctrl.showPassword=false"
@@ -36,9 +37,9 @@
                         <div ng-show="$ctrl.showPassword && loginForm.password.$invalid && loginForm.password.$dirty"
                              class="popover right notice">
                             <div class="arrow"></div>
-                            <h3 class="popover-title">Popover right</h3>
+                            <h3 class="popover-title">Error</h3>
                             <div class="popover-content">
-                                <p>A good password</p>
+                                <p>Please fill correct data good password</p>
                             </div>
                         </div>
                     </div>
