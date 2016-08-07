@@ -3,7 +3,7 @@ var zaiprotiv = window.zaiprotiv = angular.module('zaiprotiv', ['ngRoute', 'ngMe
         .when('/', {template: '<login></login>'})
         .when('/main', {templateUrl: './partial-views/main.html'})
         .when('/main/subject/:id', {template: '<subject></subject>'})
-        .when('/results', { template : '<results></results>'})
+        .when('/results', {template: '<results></results>'})
         .otherwise({redirectTo: '/'})
 }]);
 
@@ -16,8 +16,8 @@ zaiprotiv.service('selectedService', require('./services/selectedService'));
 zaiprotiv.component('arguments', require('./arguments/arguments'));
 zaiprotiv.component('argument', require('./arguments/argument'));
 zaiprotiv.service('dataService', require('./services/dataService'));
-zaiprotiv.service('results', require('./results'));
-var autocomplete = require('./autocomplete')
+zaiprotiv.component('results', require('./results'));
+var autocomplete = require('./autocomplete');
 
 module.exports = zaiprotiv;
 
