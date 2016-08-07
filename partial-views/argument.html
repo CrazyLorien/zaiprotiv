@@ -1,11 +1,8 @@
 <div class="argument-container">
     <div>
         <div class="avatar">
-<<<<<<< HEAD
-            <img ng-src={{$ctrl.args.image_url}}>
-=======
-            <img class="person-image" src="{{$ctrl.data.image_url || '/images/photo.jpg'}}">
->>>>>>> 40e7a66cd7ef448ef29b20766349953e0d76f91e
+
+            <img class="person-image" src="{{$ctrl.args.image_url || '/images/photo.jpg'}}">
         </div>
         <div class="argument-info">
 
@@ -16,16 +13,13 @@
             <div class="argument-body">
                 {{$ctrl.args.body}}
             </div>
-           {{$ctrl}}
+           
             <div class="notimportant">
-<<<<<<< HEAD
-                <button class="btn btn-ntimp" ng-click="$ctrl.remove($ctrl.args)">Not important</button>
-=======
-                <button class="btn btn-default btn-block btn-raised btn-need" ng-click="$ctrl.callBack($ctrl.data.id)">
+                <button class="btn btn-default btn-block btn-raised btn-need" ng-click="$ctrl.remove($ctrl.args)">
                     Not
                     important
                 </button>
->>>>>>> 40e7a66cd7ef448ef29b20766349953e0d76f91e
+
             </div>
 
         </div>
