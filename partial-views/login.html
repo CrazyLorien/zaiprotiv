@@ -1,4 +1,4 @@
-<div class="container-fluid" ng-form="loginForm" novalidate>
+<div class="container-fluid" ng-init="$ctrl.loginForm = {}" novalidate>
     <div class="row">
         <div class="col-md-6 left-panel">
 
@@ -14,7 +14,7 @@
 
                     <div class="form-group">
                         <label for="email" class="control-label"></label>
-                        <input required type="email" ng-model="$ctrl.email" class="form-control" id="email"
+                        <input required type="email" ng-model="$ctrl.loginForm.email" class="form-control" id="email"
                                placeholder="Email">
                     </div>
 
@@ -23,7 +23,7 @@
                         <label for="password" class="control-label"></label>
                         <input required
                                type="{{$ctrl.inputType}}"
-                               ng-model="$ctrl.password"
+                               ng-model="$ctrl.loginForm.password"
                                ng-pattern="^/.*(?=.{6,20})(?=.*\d)(?=.*[a-zA-Z]).*$/"
                                name="password"
                                ng-mouseenter="$ctrl.showPassword=true"
@@ -32,9 +32,9 @@
                                id="password"
                                placeholder="Password">
                         <i ng-click="$ctrl.showPasswordValue()" class="fa errspan"></i>
-                        <i ng-if="loginForm.password.$invalid && loginForm.password.$dirty"
+                        <i ng-if="$ctrl.loginForm.password.$invalid && $ctrl.loginForm.password.$dirty"
                            class="fa errspan indicator"></i>
-                        <div ng-show="$ctrl.showPassword && loginForm.password.$invalid && loginForm.password.$dirty"
+                        <div ng-show="$ctrl.showPassword && $ctrl.loginForm.password.$invalid && $ctrl.loginForm.password.$dirty"
                              class="popover right notice">
                             <div class="arrow"></div>
                             <h3 class="popover-title">Error</h3>
@@ -55,7 +55,7 @@
                     </div>
 
 
-                    <button type="submit" ng-disabled="loginForm.$invalid && loginForm.$dirty"
+                    <button type="submit" ng-disabled="$ctrl.$ctrl.loginForm.$invalid && $ctrl.$ctrl.loginForm.$dirty"
                             ng-click="$ctrl.login()"
                             class="btn btn-raised btn-info pull-right">
                         Sign up
@@ -82,7 +82,7 @@
                         </p>
 
                         <div class="social-icons">
-                            <button type="submit"
+                            <button type="submit" ng-click="$ctrl.login()"
                                     class="btn btn-raised  btn-primary">
                                 Login in
                             </button>
