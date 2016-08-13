@@ -1,6 +1,6 @@
 var login = {
     templateUrl: "../partial-views/login.html",
-    controller: function ($auth,$location) {
+    controller: function ($auth,$location,$rootScope) {
 
         this.inputType = 'password';
 
@@ -23,7 +23,15 @@ var login = {
             else
                 this.inputType = 'password';
         };
+
+        
+
+     $rootScope.$on('$routeChangeStart', (evt) => {
+        if(!$auth.userIsAuthenticated())
+          evt.preventDefault()
+     });
+    
     }
-};
+}
 
 module.exports = login;

@@ -74,6 +74,7 @@ var main =
 	var cookie = __webpack_require__(14)
 	var token = __webpack_require__(13);
 
+
 	module.exports = zaiprotiv;
 
 
@@ -146,7 +147,7 @@ var main =
 
 	var login = {
 	    templateUrl: "../partial-views/login.html",
-	    controller: function ($auth,$location) {
+	    controller: function ($auth,$location,$rootScope) {
 
 	        this.inputType = 'password';
 
@@ -169,8 +170,16 @@ var main =
 	            else
 	                this.inputType = 'password';
 	        };
+
+	        
+
+	     $rootScope.$on('$routeChangeStart', (evt) => {
+	        if(!$auth.userIsAuthenticated())
+	          evt.preventDefault()
+	     });
+	    
 	    }
-	};
+	}
 
 	module.exports = login;
 
