@@ -1,13 +1,18 @@
 var argument = {
     bindings: {
         args: "=",
-        hideButtons: "="
+        hideButtons: "=",
+        removearg : '='
     },
-    templateUrl: "../../partial-views/argument.html",
+    templateUrl: "../partial-views/argument.html",
     controller: function () {
+        
         this.remove = function (item) {
+            console.log('remove');
+            
             item.isImportant = false;
         }
+        
     }
 };
 

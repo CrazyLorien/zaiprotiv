@@ -35,27 +35,6 @@ var subject = {
        }
 
 
-        this.addArg = () => {
-            this.argumentStatus ? this.subj.arguments.positives.push({
-                "title": self.argumentTitle,
-                "body": self.argumentBody,
-                "rang": "27854",
-                "id": "2",
-                "image_url": "",
-                "isImportant": true
-            })
-                : this.subj.arguments.negatives.push({
-                    "title": self.argumentTitle,
-                    "body": self.argumentBody,
-                    "rang": "27854",
-                    "id": "2",
-                    "image_url": "",
-                    "isImportant": true
-                }
-            );
-
-        };
-
         this.showResult = ()=> {
             $location.path("/results/");
         };

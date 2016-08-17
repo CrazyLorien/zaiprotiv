@@ -1,5 +1,6 @@
 <div class="md-6">
     <argument
+            removearg="$ctrl.removearg"
             hide-buttons="$ctrl.hideButtons"
             ng-repeat="arg in $ctrl.args | filter: { isImportant : 'true' }"
             args="arg">

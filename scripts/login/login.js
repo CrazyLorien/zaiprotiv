@@ -27,7 +27,7 @@ var login = {
         
 
      $rootScope.$on('$routeChangeStart', (evt) => {
-        if(!$auth.userIsAuthenticated())
+        if($auth.userIsAuthenticated())
           evt.preventDefault()
      });
     

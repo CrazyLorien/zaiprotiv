@@ -71,8 +71,8 @@ var main =
 	zaiprotiv.component('results', __webpack_require__(11));
 
 	var autocomplete = __webpack_require__(12);
-	var cookie = __webpack_require__(14)
-	var token = __webpack_require__(13);
+	var cookie = __webpack_require__(13)
+	var token = __webpack_require__(14);
 
 
 	module.exports = zaiprotiv;
@@ -174,7 +174,7 @@ var main =
 	        
 
 	     $rootScope.$on('$routeChangeStart', (evt) => {
-	        if(!$auth.userIsAuthenticated())
+	        if($auth.userIsAuthenticated())
 	          evt.preventDefault()
 	     });
 	    
@@ -299,27 +299,6 @@ var main =
 	       }
 
 
-	        this.addArg = () => {
-	            this.argumentStatus ? this.subj.arguments.positives.push({
-	                "title": self.argumentTitle,
-	                "body": self.argumentBody,
-	                "rang": "27854",
-	                "id": "2",
-	                "image_url": "",
-	                "isImportant": true
-	            })
-	                : this.subj.arguments.negatives.push({
-	                    "title": self.argumentTitle,
-	                    "body": self.argumentBody,
-	                    "rang": "27854",
-	                    "id": "2",
-	                    "image_url": "",
-	                    "isImportant": true
-	                }
-	            );
-
-	        };
-
 	        this.showResult = ()=> {
 	            $location.path("/results/");
 	        };
@@ -357,7 +336,10 @@ var main =
 	    },
 	    templateUrl: "../partial-views/arguments.html",
 	    controller: function () {
-
+	        this.removearg = function ()
+	        {
+	            console.log("tada");
+	        }
 	    }
 	};
 
@@ -370,13 +352,18 @@ var main =
 	var argument = {
 	    bindings: {
 	        args: "=",
-	        hideButtons: "="
+	        hideButtons: "=",
+	        removearg : '='
 	    },
-	    templateUrl: "../../partial-views/argument.html",
+	    templateUrl: "../partial-views/argument.html",
 	    controller: function () {
+	        
 	        this.remove = function (item) {
+	            console.log('remove');
+	            
 	            item.isImportant = false;
 	        }
+	        
 	    }
 	};
 
@@ -737,6 +724,138 @@ var main =
 
 /***/ },
 /* 13 */
+/***/ function(module, exports) {
+
+	/*
+	 * Copyright 2013 Ivan Pusic
+	 * Contributors:
+	 *   Matjaz Lipus
+	 */
+	module.exports = 'ipCookie';
+
+	angular.module('ivpusic.cookie', ['ipCookie']);
+	angular.module('ipCookie', ['ng']).
+	factory('ipCookie', ['$document',
+	  function ($document) {
+	    'use strict';
+	      
+	    function tryDecodeURIComponent(value) {
+	        try {
+	            return decodeURIComponent(value);
+	        } catch(e) {
+	              // Ignore any invalid uri component
+	        }
+	    }
+
+	    return (function () {
+	      function cookieFun(key, value, options) {
+
+	        var cookies,
+	          list,
+	          i,
+	          cookie,
+	          pos,
+	          name,
+	          hasCookies,
+	          all,
+	          expiresFor;
+
+	        options = options || {};
+	        var dec = options.decode || tryDecodeURIComponent;
+	        var enc = options.encode || encodeURIComponent;
+
+	        if (value !== undefined) {
+	          // we are setting value
+	          value = typeof value === 'object' ? JSON.stringify(value) : String(value);
+
+	          if (typeof options.expires === 'number') {
+	            expiresFor = options.expires;
+	            options.expires = new Date();
+	            // Trying to delete a cookie; set a date far in the past
+	            if (expiresFor === -1) {
+	              options.expires = new Date('Thu, 01 Jan 1970 00:00:00 GMT');
+	              // A new 
+	            } else if (options.expirationUnit !== undefined) {
+	              if (options.expirationUnit === 'hours') {
+	                options.expires.setHours(options.expires.getHours() + expiresFor);
+	              } else if (options.expirationUnit === 'minutes') {
+	                options.expires.setMinutes(options.expires.getMinutes() + expiresFor);
+	              } else if (options.expirationUnit === 'seconds') {
+	                options.expires.setSeconds(options.expires.getSeconds() + expiresFor);
+	              } else if (options.expirationUnit === 'milliseconds') {
+	                options.expires.setMilliseconds(options.expires.getMilliseconds() + expiresFor);
+	              } else {
+	                options.expires.setDate(options.expires.getDate() + expiresFor);
+	              }
+	            } else {
+	              options.expires.setDate(options.expires.getDate() + expiresFor);
+	            }
+	          }
+	          return ($document[0].cookie = [
+	            enc(key),
+	            '=',
+	            enc(value),
+	            options.expires ? '; expires=' + options.expires.toUTCString() : '',
+	            options.path ? '; path=' + options.path : '',
+	            options.domain ? '; domain=' + options.domain : '',
+	            options.secure ? '; secure' : ''
+	          ].join(''));
+	        }
+
+	        list = [];
+	        all = $document[0].cookie;
+	        if (all) {
+	          list = all.split('; ');
+	        }
+
+	        cookies = {};
+	        hasCookies = false;
+
+	        for (i = 0; i < list.length; ++i) {
+	          if (list[i]) {
+	            cookie = list[i];
+	            pos = cookie.indexOf('=');
+	            name = cookie.substring(0, pos);
+	            value = dec(cookie.substring(pos + 1));
+	            if(angular.isUndefined(value))
+	              continue;
+
+	            if (key === undefined || key === name) {
+	              try {
+	                cookies[name] = JSON.parse(value);
+	              } catch (e) {
+	                cookies[name] = value;
+	              }
+	              if (key === name) {
+	                return cookies[name];
+	              }
+	              hasCookies = true;
+	            }
+	          }
+	        }
+	        if (hasCookies && key === undefined) {
+	          return cookies;
+	        }
+	      }
+	      cookieFun.remove = function (key, options) {
+	        var hasCookie = cookieFun(key) !== undefined;
+
+	        if (hasCookie) {
+	          if (!options) {
+	            options = {};
+	          }
+	          options.expires = -1;
+	          cookieFun(key, '', options);
+	        }
+	        return hasCookie;
+	      };
+	      return cookieFun;
+	    }());
+	  }
+	]);
+
+/***/ },
+/* 14 */
 /***/ function(module, exports) {
 
 	if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.exports === exports) {
@@ -1617,138 +1736,6 @@ var main =
 	  return true;
 	};
 
-
-/***/ },
-/* 14 */
-/***/ function(module, exports) {
-
-	/*
-	 * Copyright 2013 Ivan Pusic
-	 * Contributors:
-	 *   Matjaz Lipus
-	 */
-	module.exports = 'ipCookie';
-
-	angular.module('ivpusic.cookie', ['ipCookie']);
-	angular.module('ipCookie', ['ng']).
-	factory('ipCookie', ['$document',
-	  function ($document) {
-	    'use strict';
-	      
-	    function tryDecodeURIComponent(value) {
-	        try {
-	            return decodeURIComponent(value);
-	        } catch(e) {
-	              // Ignore any invalid uri component
-	        }
-	    }
-
-	    return (function () {
-	      function cookieFun(key, value, options) {
-
-	        var cookies,
-	          list,
-	          i,
-	          cookie,
-	          pos,
-	          name,
-	          hasCookies,
-	          all,
-	          expiresFor;
-
-	        options = options || {};
-	        var dec = options.decode || tryDecodeURIComponent;
-	        var enc = options.encode || encodeURIComponent;
-
-	        if (value !== undefined) {
-	          // we are setting value
-	          value = typeof value === 'object' ? JSON.stringify(value) : String(value);
-
-	          if (typeof options.expires === 'number') {
-	            expiresFor = options.expires;
-	            options.expires = new Date();
-	            // Trying to delete a cookie; set a date far in the past
-	            if (expiresFor === -1) {
-	              options.expires = new Date('Thu, 01 Jan 1970 00:00:00 GMT');
-	              // A new 
-	            } else if (options.expirationUnit !== undefined) {
-	              if (options.expirationUnit === 'hours') {
-	                options.expires.setHours(options.expires.getHours() + expiresFor);
-	              } else if (options.expirationUnit === 'minutes') {
-	                options.expires.setMinutes(options.expires.getMinutes() + expiresFor);
-	              } else if (options.expirationUnit === 'seconds') {
-	                options.expires.setSeconds(options.expires.getSeconds() + expiresFor);
-	              } else if (options.expirationUnit === 'milliseconds') {
-	                options.expires.setMilliseconds(options.expires.getMilliseconds() + expiresFor);
-	              } else {
-	                options.expires.setDate(options.expires.getDate() + expiresFor);
-	              }
-	            } else {
-	              options.expires.setDate(options.expires.getDate() + expiresFor);
-	            }
-	          }
-	          return ($document[0].cookie = [
-	            enc(key),
-	            '=',
-	            enc(value),
-	            options.expires ? '; expires=' + options.expires.toUTCString() : '',
-	            options.path ? '; path=' + options.path : '',
-	            options.domain ? '; domain=' + options.domain : '',
-	            options.secure ? '; secure' : ''
-	          ].join(''));
-	        }
-
-	        list = [];
-	        all = $document[0].cookie;
-	        if (all) {
-	          list = all.split('; ');
-	        }
-
-	        cookies = {};
-	        hasCookies = false;
-
-	        for (i = 0; i < list.length; ++i) {
-	          if (list[i]) {
-	            cookie = list[i];
-	            pos = cookie.indexOf('=');
-	            name = cookie.substring(0, pos);
-	            value = dec(cookie.substring(pos + 1));
-	            if(angular.isUndefined(value))
-	              continue;
-
-	            if (key === undefined || key === name) {
-	              try {
-	                cookies[name] = JSON.parse(value);
-	              } catch (e) {
-	                cookies[name] = value;
-	              }
-	              if (key === name) {
-	                return cookies[name];
-	              }
-	              hasCookies = true;
-	            }
-	          }
-	        }
-	        if (hasCookies && key === undefined) {
-	          return cookies;
-	        }
-	      }
-	      cookieFun.remove = function (key, options) {
-	        var hasCookie = cookieFun(key) !== undefined;
-
-	        if (hasCookie) {
-	          if (!options) {
-	            options = {};
-	          }
-	          options.expires = -1;
-	          cookieFun(key, '', options);
-	        }
-	        return hasCookie;
-	      };
-	      return cookieFun;
-	    }());
-	  }
-	]);
 
 /***/ }
 /******/ ]);
