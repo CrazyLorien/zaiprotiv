@@ -4,20 +4,31 @@ var login = {
 
         this.inputType = 'password';
 
-        this.login = () => {
+        this.create  = () => {
+             $auth.submitRegistration(this.loginForm)
+                   .then(function(resp) {
+                       $location.path("/main");
+                       // handle success response
+                    })
+                    .catch(function(resp) {
+                      // handle error response
+                      $location.path("/");
+                    });
+        };
+
+        this.login  = () => {
              $auth.submitLogin(this.loginForm)
                    .then(function(resp) {
                        $location.path("/main");
                        // handle success response
                     })
                     .catch(function(resp) {
-                    // handle error response
+                      // handle error response
                       $location.path("/");
                     });
-        };
+        };	
 
         this.showPasswordValue = ()=> {
-
             if (this.inputType == 'password')
                 this.inputType = 'text';
             else
