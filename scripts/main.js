@@ -1,5 +1,5 @@
 var zaiprotiv = window.zaiprotiv = angular.module('zaiprotiv', ['ngRoute', 'ngMessages', "autocomplete",
- "ng-token-auth"]).config(['$routeProvider', "$authProvider", function ($routeProvider,$authProvider) {
+								"ng-token-auth", 'ui-notification']).config(['$routeProvider', "$authProvider", "NotificationProvider", function ($routeProvider,$authProvider, NotificationProvider) {
     $routeProvider
         .when('/', {template: '<login></login>'})
         .when('/main', {templateUrl: './partial-views/main.html'})
@@ -8,7 +8,17 @@ var zaiprotiv = window.zaiprotiv = angular.module('zaiprotiv', ['ngRoute', 'ngMe
         .otherwise({redirectTo: '/'})
 
         $authProvider.configure({
-            apiUrl: 'http://api.example.com' // real api from Alex 'http://api.example.com'
+            apiUrl: 'http://api.zaiprotiv.by/v1' 
+        });
+
+         NotificationProvider.setOptions({
+            delay: 10000,
+            startTop: 20,
+            startRight: 10,
+            verticalSpacing: 20,
+            horizontalSpacing: 20,
+            positionX: 'left',
+            positionY: 'bottom'
         });
 }]);
 
@@ -26,6 +36,7 @@ zaiprotiv.component('results', require('./results'));
 var autocomplete = require('./autocomplete');
 var cookie = require('./vendor/ng-cookie')
 var token = require('./vendor/ng-token-auth');
+var notifications = require('./vendor/angular-ui-notification');
 
 
 module.exports = zaiprotiv;

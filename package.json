@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "angular-ui-notification": "^0.2.0",
     "bootstrap": "^3.3.7",
     "ng-token-auth": "0.0.29"
   }
