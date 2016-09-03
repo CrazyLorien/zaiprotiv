@@ -8,8 +8,7 @@ var argument = {
     controller: function () {
         
         this.remove = function (item) {
-            console.log('remove');
-            
+            console.log('remove');           
             item.isImportant = false;
         }
         

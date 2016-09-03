@@ -5,10 +5,6 @@ var arguments = {
     },
     templateUrl: "../partial-views/arguments.html",
     controller: function () {
-        this.removearg = function ()
-        {
-            console.log("tada");
-        }
     }
 };
 

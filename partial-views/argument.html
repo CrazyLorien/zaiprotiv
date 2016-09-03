@@ -14,12 +14,9 @@
             </div>
 
             <div ng-hide="$ctrl.hideButtons" class="notimportant">
-                <button class="btn btn-default btn-block btn-raised btn-need" ng-click="$ctrl.remove()" >
+                <button class="btn btn-default btn-block btn-raised btn-need" ng-click="$ctrl.remove($ctrl.args)" >
                     Not
                     important
-                </button>
-                  <button class="btn btn-default btn-block btn-raised btn-need" ng-click="$ctrl.removearg()">
-                  Remove
                 </button>
             </div>
         </div>
