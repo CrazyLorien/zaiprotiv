@@ -367,14 +367,11 @@ var main =
 	    },
 	    templateUrl: "../partial-views/arguments.html",
 	    controller: function () {
-	        this.removearg = function ()
-	        {
-	            console.log("tada");
-	        }
 	    }
 	};
 
 	module.exports = arguments;
+
 
 /***/ },
 /* 9 */
@@ -390,8 +387,7 @@ var main =
 	    controller: function () {
 	        
 	        this.remove = function (item) {
-	            console.log('remove');
-	            
+	            console.log('remove');           
 	            item.isImportant = false;
 	        }
 	        
@@ -399,6 +395,7 @@ var main =
 	};
 
 	module.exports = argument;
+
 
 /***/ },
 /* 10 */
@@ -601,6 +598,13 @@ var main =
 	            scope.setIndex(-1);
 	            scope.$apply();
 	            e.preventDefault();
+		case  key.enter:
+		    if(scope.suggestions.length == 1)
+		       scope.select(scope.suggestions[0]);
+		    scope.select(scope.suggestions[scope.selectedIndex]);
+		    scope.$apply();
+		    e.preventDefault();
+		    
 	        }
 	      }, true);
 
@@ -752,6 +756,7 @@ var main =
 	    }
 	  };
 	});
+
 
 /***/ },
 /* 13 */

@@ -144,6 +144,13 @@ app.directive('autocomplete', function() {
             scope.setIndex(-1);
             scope.$apply();
             e.preventDefault();
+	case  key.enter:
+	    if(scope.suggestions.length == 1)
+	       scope.select(scope.suggestions[0]);
+	    scope.select(scope.suggestions[scope.selectedIndex]);
+	    scope.$apply();
+	    e.preventDefault();
+	    
         }
       }, true);
 
