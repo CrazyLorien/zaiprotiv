@@ -1,0 +1,14 @@
+<div ng-if="$ctrl.showCreateNew" class="add-subject" novalidate ng-form name="addsubj">
+
+    <div class="col-md-offset-1 col-md-10">Sorry there are no results. would you like to create a new subject with this description?
+    </div>
+
+    <div class="col-md-offset-1 col-md-10">
+        <input required type="text" placeholder="enter name" name="subjname" ng-model="$ctrl.name" />
+    </div>
+
+    <div class="col-md-offset-1 col-md-10">
+        <button type="button" class="btn-addsubj btn-lg" ng-click="$ctrl.add()" ng-disabled="addsubj.subjname.$invalid">Create subject</button>
+    </div>
+
+</div>

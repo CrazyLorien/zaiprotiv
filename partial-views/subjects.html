@@ -1,3 +1,6 @@
 <div>
    <autocomplete ng-model="$ctrl.searchParam" data="$ctrl.searchdata" on-type="$ctrl.updateSearch" on-select="$ctrl.getSubject"></autocomplete>
 </div>
+<div>
+    <addsubject descr="$ctrl.searchParam" show-create-new="$ctrl.searchdata.length <= 0" description="$ctrl.searchParam"></addsubject>
+<div>

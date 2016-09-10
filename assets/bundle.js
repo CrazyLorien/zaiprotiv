@@ -50,6 +50,7 @@ var main =
 	    $routeProvider
 	        .when('/', {template: '<login></login>'})
 	        .when('/main', {templateUrl: './partial-views/main.html'})
+	        .when('/main/addsubj/', {template: '<subject></subject>'})
 	        .when('/main/subject/:id', {template: '<subject></subject>'})
 	        .when('/results', {template: '<results></results>'})
 	        .otherwise({redirectTo: '/'})
@@ -79,11 +80,12 @@ var main =
 	zaiprotiv.component('argument', __webpack_require__(9));
 	zaiprotiv.service('dataService', __webpack_require__(10));
 	zaiprotiv.component('results', __webpack_require__(11));
+	zaiprotiv.component('addsubject', __webpack_require__(12));
 
-	var autocomplete = __webpack_require__(12);
-	var cookie = __webpack_require__(13)
-	var token = __webpack_require__(14);
-	var notifications = __webpack_require__(15);
+	var autocomplete = __webpack_require__(13);
+	var cookie = __webpack_require__(14)
+	var token = __webpack_require__(15);
+	var notifications = __webpack_require__(16);
 
 
 	module.exports = zaiprotiv;
@@ -158,56 +160,53 @@ var main =
 
 	var login = {
 	    templateUrl: "../partial-views/login.html",
-	    controller: function ($auth,$location,$rootScope, Notification) {
+	    controller: function ($auth, $location, $rootScope, Notification) {
 
 	        this.inputType = 'password';
 
-	        this.create  = () => {
-	             $auth.submitRegistration(this.loginForm)
-	                   .then(function(resp) {
-	                       $location.path("/main");
-	                       // handle success response
-			       var respData = resp.data.data;
-			       Notification.success('User with email ' + respData.email + 'has been registered!');
-	                    })
-	                    .catch(function(resp) {
-	                      // handle error response
-				$location.path("/");
-				Notification.error(resp.data.errors.full_messages[0]);
-	                    });
+	        this.create = () => {
+	            $auth.submitRegistration(this.loginForm)
+	                .then(function (resp) {
+	                    $location.path("/main");
+	                    // handle success response
+	                    var respData = resp.data.data;
+	                    Notification.success('User with email ' + respData.email + 'has been registered!');
+	                })
+	                .catch(function (resp) {
+	                    // handle error response
+	                    $location.path("/");
+	                    Notification.error(resp.data.errors.full_messages[0]);
+	                });
 	        };
 
-	        this.login  = () => {
-	             $auth.submitLogin(this.loginForm)
-	                   .then(function(resp) {
-	                       $location.path("/main");
-	                       // handle success response
-			       Notification.success('Nice to meet you!');
-	                    })
-	                    .catch(function(resp) {
-	                      // handle error response
-			     $location.path("/");
-			     Notification.error('Oooops. Please try register it is as simple as possible - just enter email, pass and click sign up. After then click log in. And voila you are user =)');
-	                    });
-	        };	
+	        this.login = () => {
+	            $auth.submitLogin(this.loginForm)
+	                .then(function (resp) {
+	                    $location.path("/main");
+	                    // handle success response
+	                    Notification.success('Nice to meet you!');
+	                })
+	                .catch(function (resp) {
+	                    // handle error response
+	                    $location.path("/");
+	                    Notification.error('Oooops. Please try register it is as simple as possible - just enter email, pass and click sign up. After then click log in. And voila you are user =)');
+	                });
+	        };
 
-	        this.showPasswordValue = ()=> {
+	        this.showPasswordValue = () => {
 	            if (this.inputType == 'password')
 	                this.inputType = 'text';
 	            else
 	                this.inputType = 'password';
 	        };
 
-	        
+	        $rootScope.$on('$routeChangeStart', (evt) => {
+	            if (!$auth.userIsAuthenticated()) {
+	                Notification.error('Oooops. Please try register it is as simple as possible - just enter email, pass and click sign up. After then click log in. And voila you are user =)');
+	                evt.preventDefault()
+	            }
+	        });
 
-	     $rootScope.$on('$routeChangeStart', (evt) => {
-	         if(!$auth.userIsAuthenticated())
-		 {
-		 Notification.error('Oooops. Please try register it is as simple as possible - just enter email, pass and click sign up. After then click log in. And voila you are user =)');                  
-	         evt.preventDefault()
-		 }
-	     });
-	    
 	    }
 	}
 
@@ -298,16 +297,10 @@ var main =
 	var subject = {
 	   templateUrl:"../partial-views/subject.html",
 	   controller: function (selectedService, dataService, $timeout,$location) {
-	       /*this.subj = [] ; 
-	       dataService.getById(config.url, selectedService.getSelected().id).then( (response) => {
-	          var temp = response.data.filter(function(rw){ return rw.id == selectedService.getSelected().id });
-	          this.subj = temp[0];
-	       }) */
 	       var self = this; 
 
 	       this.subj = selectedService.getSelected();
 	       
-
 	       this.addArg = () => {
 	          self.argumentStatus ? self.subj.arguments.positives.push({
 	                      "title": self.argumentTitle,
@@ -450,6 +443,29 @@ var main =
 
 /***/ },
 /* 12 */
+/***/ function(module, exports) {
+
+	var addsubject = {
+	    bindings: {
+	        showCreateNew: "<",
+	        descr : "<"
+	    },
+	    templateUrl: "../partial-views/addSubject.html",
+	    controller: function (selectedService, $location) {
+	        
+	        this.add = function () {
+	            var addedItem = { name : this.name, description : this.descr, arguments :  { "positives" : [], "negatives" : []}}
+	            selectedService.setSelected(addedItem);
+	            $location.path("/main/addsubj")
+	        }
+	        
+	    }
+	};
+
+	module.exports = addsubject;
+
+/***/ },
+/* 13 */
 /***/ function(module, exports) {
 
 	var app = angular.module('autocomplete', []);
@@ -759,7 +775,7 @@ var main =
 
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports) {
 
 	/*
@@ -891,7 +907,7 @@ var main =
 	]);
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports) {
 
 	if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.exports === exports) {
@@ -1774,7 +1790,7 @@ var main =
 
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports) {
 
 	/**

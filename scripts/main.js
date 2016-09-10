@@ -3,6 +3,7 @@ var zaiprotiv = window.zaiprotiv = angular.module('zaiprotiv', ['ngRoute', 'ngMe
     $routeProvider
         .when('/', {template: '<login></login>'})
         .when('/main', {templateUrl: './partial-views/main.html'})
+        .when('/main/addsubj/', {template: '<subject></subject>'})
         .when('/main/subject/:id', {template: '<subject></subject>'})
         .when('/results', {template: '<results></results>'})
         .otherwise({redirectTo: '/'})
@@ -32,6 +33,7 @@ zaiprotiv.component('arguments', require('./arguments/arguments'));
 zaiprotiv.component('argument', require('./arguments/argument'));
 zaiprotiv.service('dataService', require('./services/dataService'));
 zaiprotiv.component('results', require('./results'));
+zaiprotiv.component('addsubject', require('./addsubject/addsubject'));
 
 var autocomplete = require('./autocomplete');
 var cookie = require('./vendor/ng-cookie')

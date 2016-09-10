@@ -382,6 +382,69 @@
 }
 
 
+.add-subject{
+    margin: 5px;
+    font-size:16px;
+}
+
+.add-subject div{
+    margin-bottom:10px;
+    font-size:16px;
+}
+
+.add-subject input{
+    width:100%;
+}
+
+.btn-addsubj { 
+  color: #000000; 
+  background-color: #F0EAF7; 
+  border-color: #D4D0E8; 
+} 
+ 
+.btn-addsubj:hover, 
+.btn-addsubj:focus, 
+.btn-addsubj:active, 
+.btn-addsubj.active, 
+.open .dropdown-toggle.btn-addsubj { 
+  color: #000000; 
+  background-color:rgb(0, 150, 136) ; 
+  border-color: #D4D0E8; 
+} 
+ 
+.btn-addsubj:active, 
+.btn-addsubj.active, 
+.open .dropdown-toggle.btn-addsubj { 
+  background-image: none; 
+} 
+ 
+.btn-addsubj.disabled, 
+.btn-addsubj[disabled], 
+fieldset[disabled] .btn-addsubj, 
+.btn-addsubj.disabled:hover, 
+.btn-addsubj[disabled]:hover, 
+fieldset[disabled] .btn-addsubj:hover, 
+.btn-addsubj.disabled:focus, 
+.btn-addsubj[disabled]:focus, 
+fieldset[disabled] .btn-addsubj:focus, 
+.btn-addsubj.disabled:active, 
+.btn-addsubj[disabled]:active, 
+fieldset[disabled] .btn-addsubj:active, 
+.btn-addsubj.disabled.active, 
+.btn-addsubj[disabled].active, 
+fieldset[disabled] .btn-addsubj.active { 
+  background-color: #F0EAF7; 
+  border-color: #D4D0E8; 
+} 
+ 
+.btn-addsubj .badge { 
+  color: #F0EAF7; 
+  background-color: #000000; 
+}
+
+
+
+
 
 
 
