@@ -45,8 +45,7 @@ var main =
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var zaiprotiv = window.zaiprotiv = angular.module('zaiprotiv', ['ngRoute', 'ngMessages', "autocomplete",
-									"ng-token-auth", 'ui-notification']).config(['$routeProvider', "$authProvider", "NotificationProvider", function ($routeProvider,$authProvider, NotificationProvider) {
+	var zaiprotiv = window.zaiprotiv = angular.module('zaiprotiv', ['ngRoute', 'ngMessages', "autocomplete","ng-token-auth", 'ui-notification']).config(['$routeProvider', "$authProvider", "NotificationProvider", function ($routeProvider,$authProvider, NotificationProvider) {
 	    $routeProvider
 	        .when('/', {template: '<login></login>'})
 	        .when('/main', {templateUrl: './partial-views/main.html'})
@@ -56,7 +55,7 @@ var main =
 	        .otherwise({redirectTo: '/'})
 
 	        $authProvider.configure({
-	            apiUrl: 'http://api.zaiprotiv.by/v1' 
+	            apiUrl: 'http://localhost:3000/v1' 
 	        });
 
 	         NotificationProvider.setOptions({
@@ -149,10 +148,11 @@ var main =
 
 	var config = {
 	    url : "content.json", 
-	    urlProd : "http://api.zaiprotiv.by/v1/"
+	    urlProd :"http://zaiprotiv.by/v1/"
 	}
 
-	module.exports = config;
+	module.exports = config; 
+
 
 /***/ },
 /* 3 */
@@ -296,30 +296,40 @@ var main =
 
 	var subject = {
 	   templateUrl:"../partial-views/subject.html",
-	   controller: function (selectedService, dataService, $timeout,$location) {
+	   controller: function (selectedService, dataService, $timeout,$location, $http) {
 	       var self = this; 
 
 	       this.subj = selectedService.getSelected();
-	       
+	      
 	       this.addArg = () => {
-	          self.argumentStatus ? self.subj.arguments.positives.push({
+	           var argument = {
 	                      "title": self.argumentTitle,
 	                      "body":  self.argumentBody,
 	                      "rang": "27854",
-	                      "id": "2",
 	                      "image_url": "",
+	                      "positive" : 1,
+	                      "subject_id" : this.subj.subject_id,
 	                       "isImportant" : true
-	                      })
-	                     : self.subj.arguments.negatives.push({
-	                      "title": self.argumentTitle,
-	                      "body":  self.argumentBody,
-	                      "rang": "27854",
-	                      "id": "2",
-	                      "image_url": "",
-	                       "isImportant" : true
-	                    }
-	);
-	        
+	                      };
+
+	           if(self.argumentStatus)
+	           {
+	             argument["positive"]  = 1,
+	             self.subj.arguments.positives.push(argument)
+
+	           }else{
+	             argument["positive"]  = 0,
+	             self.subj.arguments.negatives.push(argument)       
+	          }
+
+	          $http.post(config.urlProd + 'arguments', JSON.stringify(argument)).then(
+	           function (data){
+	                    console.log(data)
+	           },
+	           function (err){
+	              console.log(err);
+	          
+	           });
 	       }
 
 
@@ -421,14 +431,25 @@ var main =
 
 	var results = {
 	    templateUrl: "../partial-views/results.html",
-	    controller: function (selectedService, dataService, $timeout) {
+	    controller: function (selectedService, dataService, $timeout, $http) {
 	        this.subj = selectedService.getSelected();
 	      
 
 	        this.hideButtons = true;
 
 	        this.addPositive = ()=> {
-
+				    var data = this.subj;
+				    data.image_url = data.image_url || "http://img.tyt.by/n/lady.tut.by/0b/8/s_na_1_03.jpg";	   
+				    data.arguments = [];
+				    data.arguments.push(args);
+				    $http.post(config.urlProd + 'samples', JSON.stringify(data)).then(
+					       function (data){
+			                            console.log(data)
+				                },
+					       function (err){
+						   console.log(err);
+						   
+					       });
 	        };
 
 	        this.addNegative = ()=> {
@@ -441,22 +462,33 @@ var main =
 
 	module.exports = results;
 
+
 /***/ },
 /* 12 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
+	var config = __webpack_require__(2)
 	var addsubject = {
 	    bindings: {
 	        showCreateNew: "<",
 	        descr : "<"
 	    },
 	    templateUrl: "../partial-views/addSubject.html",
-	    controller: function (selectedService, $location) {
+	    controller: function (selectedService, $location,$http) {
 	        
 	        this.add = function () {
-	            var addedItem = { name : this.name, description : this.descr, arguments :  { "positives" : [], "negatives" : []}}
-	            selectedService.setSelected(addedItem);
-	            $location.path("/main/addsubj")
+	            var addedItem = { name : this.name, description : this.descr, arguments :  { "positives" : [], "negatives" : []}}           
+	            $http.post(config.urlProd + 'subjects', JSON.stringify(addedItem)).then(
+	                   function (data){
+	                        console.log(data)
+	                        addedItem.subject_id = data.data.id;
+	                        selectedService.setSelected(addedItem);
+	                        $location.path("/main/addsubj")                            
+	                   },
+	                   function (err){
+	                      console.log(err);
+	                      $location.path("/main")
+	                   });         
 	        }
 	        
 	    }
