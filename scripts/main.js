@@ -8,7 +8,7 @@ var zaiprotiv = window.zaiprotiv = angular.module('zaiprotiv', ['ngRoute', 'ngMe
         .otherwise({redirectTo: '/'})
 
         $authProvider.configure({
-            apiUrl: 'http://localhost:3000/v1' 
+            apiUrl: 'http://zaiprotiv.by/v1' 
         });
 
          NotificationProvider.setOptions({
@@ -38,7 +38,6 @@ var autocomplete = require('./autocomplete');
 var cookie = require('./vendor/ng-cookie')
 var token = require('./vendor/ng-token-auth');
 var notifications = require('./vendor/angular-ui-notification');
-
 
 module.exports = zaiprotiv;
 
